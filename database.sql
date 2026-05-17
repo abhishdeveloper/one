@@ -118,3 +118,76 @@ INSERT INTO pages (slug, title, content) VALUES
 INSERT INTO faqs (question, answer, sort_order) VALUES
 ('What services do you offer?', 'We offer Web Development, App Development, UI/UX Design, Backend Development, E-Commerce Solutions, and Digital Marketing.', 1),
 ('How can I contact you?', 'You can contact us via email at abhishcare@gmail.com or call us at +91 86309 71461.', 2);
+-- Update Users Table for Google Auth and Auth Flexibility
+ALTER TABLE users MODIFY password VARCHAR(255) NULL;
+ALTER TABLE users ADD google_id VARCHAR(255) NULL UNIQUE AFTER email;
+ALTER TABLE users ADD avatar VARCHAR(255) NULL AFTER google_id;
+
+-- Add settings for Google API
+INSERT INTO settings (setting_key, setting_value, description) VALUES
+('google_client_id', '', 'Google OAuth2 Client ID'),
+('google_client_secret', '', 'Google OAuth2 Client Secret'),
+('google_redirect_uri', 'http://localhost:8000/auth/googleCallback', 'Google OAuth2 Redirect URI');
+
+-- Client Services Table (What hosting/services the client owns)
+CREATE TABLE IF NOT EXISTS client_services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    service_id INT NOT NULL,
+    domain_name VARCHAR(255) DEFAULT NULL,
+    status ENUM('pending', 'active', 'suspended', 'cancelled') DEFAULT 'pending',
+    billing_cycle ENUM('monthly', 'yearly', 'one-time') DEFAULT 'monthly',
+    price DECIMAL(10, 2) NOT NULL,
+    next_due_date DATE DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
+);
+
+-- Invoices Table
+CREATE TABLE IF NOT EXISTS invoices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    client_service_id INT DEFAULT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    status ENUM('unpaid', 'paid', 'cancelled') DEFAULT 'unpaid',
+    due_date DATE NOT NULL,
+    paid_date DATETIME DEFAULT NULL,
+    payment_method VARCHAR(100) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (client_service_id) REFERENCES client_services(id) ON DELETE SET NULL
+);
+
+-- Support Tickets Table
+CREATE TABLE IF NOT EXISTS tickets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    client_service_id INT DEFAULT NULL,
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    status ENUM('open', 'in_progress', 'resolved', 'closed') DEFAULT 'open',
+    priority ENUM('low', 'medium', 'high') DEFAULT 'medium',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (client_service_id) REFERENCES client_services(id) ON DELETE SET NULL
+);
+
+-- Ticket Replies Table
+CREATE TABLE IF NOT EXISTS ticket_replies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ticket_id INT NOT NULL,
+    user_id INT NOT NULL, -- Can be client or admin replying
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Insert Default Admin User (Password is 'admin123')
+-- For testing purposes. In production, change this immediately.
+INSERT INTO users (name, email, password, role) VALUES
+('Admin', 'admin@abhish.in', '$argon2id$v=19$m=65536,t=4,p=2$eEN6UzZtLmZyM2NMc3RaTw$kuPunyAtmWwCIZEomV7UgUXdKw+4PsXB4TzgBhv24JM', 'admin');
