@@ -123,11 +123,17 @@ ALTER TABLE users MODIFY password VARCHAR(255) NULL;
 ALTER TABLE users ADD google_id VARCHAR(255) NULL UNIQUE AFTER email;
 ALTER TABLE users ADD avatar VARCHAR(255) NULL AFTER google_id;
 
--- Add settings for Google API
+-- Add settings for Google API and SMTP
 INSERT INTO settings (setting_key, setting_value, description) VALUES
 ('google_client_id', '', 'Google OAuth2 Client ID'),
 ('google_client_secret', '', 'Google OAuth2 Client Secret'),
-('google_redirect_uri', 'http://localhost:8000/auth/googleCallback', 'Google OAuth2 Redirect URI');
+('google_redirect_uri', 'http://localhost:8000/auth/googleCallback', 'Google OAuth2 Redirect URI'),
+('smtp_host', 'smtp.example.com', 'SMTP Server Host'),
+('smtp_port', '587', 'SMTP Server Port (e.g. 587 or 465)'),
+('smtp_user', '', 'SMTP Username'),
+('smtp_pass', '', 'SMTP Password'),
+('smtp_from_email', 'noreply@abhish.in', 'From Email Address'),
+('smtp_from_name', 'Abhish.in Hosting', 'From Name');
 
 -- Client Services Table (What hosting/services the client owns)
 CREATE TABLE IF NOT EXISTS client_services (
@@ -188,6 +194,5 @@ CREATE TABLE IF NOT EXISTS ticket_replies (
 );
 
 -- Insert Default Admin User (Password is 'admin123')
--- For testing purposes. In production, change this immediately.
 INSERT INTO users (name, email, password, role) VALUES
 ('Admin', 'admin@abhish.in', '$argon2id$v=19$m=65536,t=4,p=2$eEN6UzZtLmZyM2NMc3RaTw$kuPunyAtmWwCIZEomV7UgUXdKw+4PsXB4TzgBhv24JM', 'admin');

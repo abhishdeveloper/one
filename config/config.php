@@ -1,7 +1,7 @@
 <?php
 
 define('APPROOT', dirname(dirname(__FILE__)));
-define('URLROOT', 'http://localhost');
+define('URLROOT', 'http://localhost:8000');
 define('SITENAME', 'Abhish.in Shared Hosting');
 
 // Database Configuration
