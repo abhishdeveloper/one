@@ -123,23 +123,53 @@ class Client extends Controller {
     }
 
     public function pay($id) {
-        $this->db->query("UPDATE invoices SET status = 'paid', paid_date = NOW(), payment_method = 'Simulated Gateway' WHERE id = :id AND user_id = :user_id");
+        // Fetch invoice details
+        $this->db->query("SELECT i.*, s.title as service_name FROM invoices i LEFT JOIN client_services cs ON i.client_service_id = cs.id LEFT JOIN services s ON cs.service_id = s.id WHERE i.id = :id AND i.user_id = :user_id AND i.status = 'unpaid'");
         $this->db->bind(':id', $id);
         $this->db->bind(':user_id', $_SESSION['user_id']);
+        $invoice = $this->db->single();
 
-        if ($this->db->execute()) {
-            $this->db->query("SELECT client_service_id FROM invoices WHERE id = :id");
-            $this->db->bind(':id', $id);
-            $inv = $this->db->single();
-            if ($inv && $inv->client_service_id) {
-                $this->db->query("UPDATE client_services SET status = 'active', next_due_date = DATE_ADD(NOW(), INTERVAL 1 MONTH) WHERE id = :cs_id");
-                $this->db->bind(':cs_id', $inv->client_service_id);
-                $this->db->execute();
-            }
-            $_SESSION['flash_message'] = 'Payment successful!';
+        if (!$invoice) {
+            header('Location: ' . URLROOT . '/index.php?url=client/invoices');
+            return;
         }
 
-        header('Location: ' . URLROOT . '/index.php?url=client/invoices');
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'invoice' => $invoice
+        ];
+
+        $this->view('client/pay', $data);
+    }
+
+    public function submitUtr($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+                die('CSRF validation failed');
+            }
+
+            $utrNumber = filter_input(INPUT_POST, 'utr_number', FILTER_SANITIZE_STRING);
+
+            if (empty($utrNumber)) {
+                $_SESSION['flash_message'] = 'Please enter your Transaction / UTR Number.';
+                header('Location: ' . URLROOT . '/index.php?url=client/pay/' . $id);
+                return;
+            }
+
+            $this->db->query("UPDATE invoices SET status = 'pending_verification', utr_number = :utr WHERE id = :id AND user_id = :user_id");
+            $this->db->bind(':id', $id);
+            $this->db->bind(':user_id', $_SESSION['user_id']);
+            $this->db->bind(':utr', $utrNumber);
+
+            if ($this->db->execute()) {
+                $_SESSION['flash_message'] = 'Payment reference submitted. Your payment is now pending manual verification by the admin.';
+            } else {
+                $_SESSION['flash_message'] = 'Failed to submit payment reference.';
+            }
+
+            header('Location: ' . URLROOT . '/index.php?url=client/invoices');
+            return;
+        }
     }
 
     public function tickets() {

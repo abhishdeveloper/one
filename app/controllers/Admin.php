@@ -69,9 +69,9 @@ class Admin extends Controller {
             $this->db->bind(':value', $clientSecret);
             $this->db->execute();
 
-            // SMTP Settings
-            $smtpSettings = ['smtp_host', 'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_from_email', 'smtp_from_name'];
-            foreach ($smtpSettings as $key) {
+            // Settings loops
+            $updateSettings = ['smtp_host', 'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_from_email', 'smtp_from_name', 'upi_id'];
+            foreach ($updateSettings as $key) {
                 if (isset($_POST[$key])) {
                     $val = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
                     $this->db->query("UPDATE settings SET setting_value = :value WHERE setting_key = :key");
@@ -117,5 +117,82 @@ class Admin extends Controller {
         } else {
             header('Location: ' . URLROOT . '/index.php?url=admin/users');
         }
+    }
+
+    public function invoices() {
+        $this->db->query("SELECT i.*, u.name as client_name, u.email as client_email, s.title as service_name FROM invoices i JOIN users u ON i.user_id = u.id LEFT JOIN client_services cs ON i.client_service_id = cs.id LEFT JOIN services s ON cs.service_id = s.id ORDER BY i.created_at DESC");
+        $invoices = $this->db->resultSet();
+
+        $this->db->query("SELECT id, name, email FROM users WHERE role = 'client' ORDER BY name ASC");
+        $clients = $this->db->resultSet();
+
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'invoices' => $invoices,
+            'clients' => $clients
+        ];
+
+        $this->view('admin/invoices', $data);
+    }
+
+    public function createInvoice() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+                die('CSRF validation failed');
+            }
+
+            $userId = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
+            $amount = filter_input(INPUT_POST, 'amount', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING); // we'll use a dummy service or just rely on invoice having no client_service_id for custom
+
+            if (empty($userId) || empty($amount)) {
+                $_SESSION['flash_message'] = 'User and Amount are required.';
+            } else {
+                $this->db->query("INSERT INTO invoices (user_id, amount, due_date) VALUES (:user_id, :amount, DATE_ADD(NOW(), INTERVAL 7 DAY))");
+                $this->db->bind(':user_id', $userId);
+                $this->db->bind(':amount', $amount);
+
+                if ($this->db->execute()) {
+                    $_SESSION['flash_message'] = 'Custom invoice created successfully.';
+                } else {
+                    $_SESSION['flash_message'] = 'Something went wrong creating the invoice.';
+                }
+            }
+        }
+        header('Location: ' . URLROOT . '/index.php?url=admin/invoices');
+        return;
+    }
+
+    public function verifyPayment($id, $action) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+                die('CSRF validation failed');
+            }
+
+            if ($action == 'approve') {
+                $this->db->query("UPDATE invoices SET status = 'paid', paid_date = NOW(), payment_method = 'UPI' WHERE id = :id");
+                $this->db->bind(':id', $id);
+                $this->db->execute();
+
+                // Activate service if linked
+                $this->db->query("SELECT client_service_id FROM invoices WHERE id = :id");
+                $this->db->bind(':id', $id);
+                $inv = $this->db->single();
+                if ($inv && $inv->client_service_id) {
+                    $this->db->query("UPDATE client_services SET status = 'active', next_due_date = DATE_ADD(NOW(), INTERVAL 1 MONTH) WHERE id = :cs_id");
+                    $this->db->bind(':cs_id', $inv->client_service_id);
+                    $this->db->execute();
+                }
+
+                $_SESSION['flash_message'] = 'Payment verified and invoice marked as paid.';
+            } elseif ($action == 'reject') {
+                $this->db->query("UPDATE invoices SET status = 'unpaid', utr_number = NULL WHERE id = :id");
+                $this->db->bind(':id', $id);
+                $this->db->execute();
+                $_SESSION['flash_message'] = 'Payment rejected. Invoice returned to unpaid status.';
+            }
+        }
+        header('Location: ' . URLROOT . '/index.php?url=admin/invoices');
+        return;
     }
 }

@@ -76,6 +76,16 @@
                         </div>
                     </div>
 
+                    <div class="card" style="margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Payment Settings</h3>
+                        <p style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.9rem;">Configure UPI details for receiving manual payments.</p>
+
+                        <div class="form-group">
+                            <label>Admin UPI ID (e.g. name@bank)</label>
+                            <input type="text" name="upi_id" class="form-control" value="<?= htmlspecialchars($data['settings']['upi_id'] ?? ''); ?>" required>
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Save All Settings</button>
                 </form>
             </div>

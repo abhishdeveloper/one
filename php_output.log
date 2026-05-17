@@ -1,0 +1,407 @@
+[Sun May 17 15:18:31 2026] PHP 8.3.6 Development Server (http://localhost:8000) started
+[Sun May 17 15:20:19 2026] [::1]:45682 Accepted
+[Sun May 17 15:20:19 2026] [::1]:45682 [200]: GET /index.php?url=auth/register
+[Sun May 17 15:20:19 2026] [::1]:45682 Closing
+[Sun May 17 15:20:19 2026] [::1]:45690 Accepted
+[Sun May 17 15:20:19 2026] [::1]:45702 Accepted
+[Sun May 17 15:20:19 2026] [::1]:45690 [200]: GET /css/style.css
+[Sun May 17 15:20:19 2026] [::1]:45702 [200]: GET /js/main.js
+[Sun May 17 15:20:19 2026] [::1]:45702 Closing
+[Sun May 17 15:20:19 2026] [::1]:45690 Closing
+[Sun May 17 15:20:20 2026] [::1]:45704 Accepted
+[Sun May 17 15:20:20 2026] [::1]:45704 [200]: POST /index.php?url=auth/register
+[Sun May 17 15:20:20 2026] [::1]:45704 Closing
+[Sun May 17 15:20:20 2026] [::1]:45712 Accepted
+[Sun May 17 15:20:20 2026] [::1]:45720 Accepted
+[Sun May 17 15:20:20 2026] [::1]:45712 [200]: GET /css/style.css
+[Sun May 17 15:20:20 2026] [::1]:45720 [200]: GET /js/main.js
+[Sun May 17 15:20:20 2026] [::1]:45712 Closing
+[Sun May 17 15:20:20 2026] [::1]:45720 Closing
+[Sun May 17 15:20:22 2026] [::1]:47936 Accepted
+[Sun May 17 15:20:22 2026] [::1]:47936 [200]: GET /index.php?url=auth/login
+[Sun May 17 15:20:22 2026] [::1]:47936 Closing
+[Sun May 17 15:20:22 2026] [::1]:47946 Accepted
+[Sun May 17 15:20:22 2026] [::1]:47958 Accepted
+[Sun May 17 15:20:22 2026] [::1]:47946 [200]: GET /css/style.css
+[Sun May 17 15:20:22 2026] [::1]:47946 Closing
+[Sun May 17 15:20:22 2026] [::1]:47958 [200]: GET /js/main.js
+[Sun May 17 15:20:22 2026] [::1]:47958 Closing
+[Sun May 17 15:20:23 2026] [::1]:47974 Accepted
+[Sun May 17 15:20:23 2026] [::1]:47974 [302]: POST /index.php?url=auth/login
+[Sun May 17 15:20:23 2026] [::1]:47974 Closing
+[Sun May 17 15:20:23 2026] [::1]:47982 Accepted
+[Sun May 17 15:20:23 2026] [::1]:47982 [200]: GET /index.php?url=client/index
+[Sun May 17 15:20:23 2026] [::1]:47982 Closing
+[Sun May 17 15:20:23 2026] [::1]:47986 Accepted
+[Sun May 17 15:20:23 2026] [::1]:47994 Accepted
+[Sun May 17 15:20:23 2026] [::1]:47986 [200]: GET /css/style.css
+[Sun May 17 15:20:23 2026] [::1]:47994 [200]: GET /js/main.js
+[Sun May 17 15:20:23 2026] [::1]:47986 Closing
+[Sun May 17 15:20:23 2026] [::1]:47994 Closing
+[Sun May 17 15:20:25 2026] [::1]:48002 Accepted
+[Sun May 17 15:20:25 2026] [::1]:48002 [200]: GET /index.php?url=client/buy
+[Sun May 17 15:20:25 2026] [::1]:48002 Closing
+[Sun May 17 15:20:25 2026] [::1]:48016 Accepted
+[Sun May 17 15:20:25 2026] [::1]:48024 Accepted
+[Sun May 17 15:20:25 2026] [::1]:48016 [200]: GET /css/style.css
+[Sun May 17 15:20:25 2026] [::1]:48024 [200]: GET /js/main.js
+[Sun May 17 15:20:25 2026] [::1]:48016 Closing
+[Sun May 17 15:20:25 2026] [::1]:48024 Closing
+[Sun May 17 15:20:27 2026] [::1]:48030 Accepted
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:20:27 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:20:27 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+[Sun May 17 15:20:27 2026] [::1]:48030 [302]: POST /index.php?url=client/buy
+[Sun May 17 15:20:27 2026] [::1]:48030 Closing
+[Sun May 17 15:20:27 2026] [::1]:48032 Accepted
+[Sun May 17 15:20:27 2026] [::1]:48032 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:20:27 2026] [::1]:48032 Closing
+[Sun May 17 15:20:27 2026] [::1]:48038 Accepted
+[Sun May 17 15:20:27 2026] [::1]:48050 Accepted
+[Sun May 17 15:20:27 2026] [::1]:48038 [200]: GET /css/style.css
+[Sun May 17 15:20:27 2026] [::1]:48050 [200]: GET /js/main.js
+[Sun May 17 15:20:27 2026] [::1]:48038 Closing
+[Sun May 17 15:20:27 2026] [::1]:48050 Closing
+[Sun May 17 15:25:09 2026] [::1]:59852 Accepted
+[Sun May 17 15:25:09 2026] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:113
+Stack trace:
+#0 /app/core/Router.php(45): Client->invoices()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 113
+[Sun May 17 15:25:09 2026] [::1]:59852 [302]: GET /index.php?url=client/invoices - Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:113
+Stack trace:
+#0 /app/core/Router.php(45): Client->invoices()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 113
+[Sun May 17 15:25:09 2026] [::1]:59852 Closing
+[Sun May 17 15:25:55 2026] [::1]:58534 Accepted
+[Sun May 17 15:25:55 2026] [::1]:58534 [200]: GET /index.php?url=auth/login
+[Sun May 17 15:25:55 2026] [::1]:58534 Closing
+[Sun May 17 15:26:45 2026] [::1]:53828 Accepted
+[Sun May 17 15:26:46 2026] [::1]:53828 [302]: POST /index.php?url=auth/login
+[Sun May 17 15:26:46 2026] [::1]:53828 Closing
+[Sun May 17 15:31:03 2026] [::1]:54398 Accepted
+[Sun May 17 15:31:03 2026] [::1]:54398 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:31:03 2026] [::1]:54398 Closing
+[Sun May 17 15:31:51 2026] [::1]:60238 Accepted
+[Sun May 17 15:31:51 2026] [::1]:60238 [200]: GET /index.php?url=client/pay/1
+[Sun May 17 15:31:51 2026] [::1]:60238 Closing
+[Sun May 17 15:36:08 2026] [::1]:50482 Accepted
+[Sun May 17 15:36:08 2026] [::1]:50482 [302]: POST /index.php?url=client/submitUtr/1
+[Sun May 17 15:36:08 2026] [::1]:50482 Closing
+[Sun May 17 15:36:22 2026] [::1]:37912 Accepted
+[Sun May 17 15:36:22 2026] [::1]:37912 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:36:22 2026] [::1]:37912 Closing
+[Sun May 17 15:37:54 2026] [::1]:60674 Accepted
+[Sun May 17 15:37:54 2026] [::1]:60674 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:37:54 2026] [::1]:60674 Closing
+[Sun May 17 15:38:37 2026] [::1]:60978 Accepted
+[Sun May 17 15:38:37 2026] [::1]:60978 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:38:37 2026] [::1]:60978 Closing
+[Sun May 17 15:40:42 2026] [::1]:44430 Accepted
+[Sun May 17 15:40:42 2026] [::1]:44430 [200]: GET /index.php?url=auth/register
+[Sun May 17 15:40:42 2026] [::1]:44430 Closing
+[Sun May 17 15:40:42 2026] [::1]:44438 Accepted
+[Sun May 17 15:40:42 2026] [::1]:44450 Accepted
+[Sun May 17 15:40:42 2026] [::1]:44438 [200]: GET /css/style.css
+[Sun May 17 15:40:42 2026] [::1]:44450 [200]: GET /js/main.js
+[Sun May 17 15:40:42 2026] [::1]:44450 Closing
+[Sun May 17 15:40:42 2026] [::1]:44438 Closing
+[Sun May 17 15:40:43 2026] [::1]:44456 Accepted
+[Sun May 17 15:40:43 2026] [::1]:44456 [200]: POST /index.php?url=auth/register
+[Sun May 17 15:40:43 2026] [::1]:44456 Closing
+[Sun May 17 15:40:43 2026] [::1]:44464 Accepted
+[Sun May 17 15:40:43 2026] [::1]:44464 [200]: GET /css/style.css
+[Sun May 17 15:40:43 2026] [::1]:44464 Closing
+[Sun May 17 15:40:43 2026] [::1]:44472 Accepted
+[Sun May 17 15:40:43 2026] [::1]:44472 [200]: GET /js/main.js
+[Sun May 17 15:40:43 2026] [::1]:44472 Closing
+[Sun May 17 15:40:45 2026] [::1]:44482 Accepted
+[Sun May 17 15:40:45 2026] [::1]:44482 [200]: GET /index.php?url=auth/login
+[Sun May 17 15:40:45 2026] [::1]:44482 Closing
+[Sun May 17 15:40:45 2026] [::1]:44486 Accepted
+[Sun May 17 15:40:45 2026] [::1]:44490 Accepted
+[Sun May 17 15:40:45 2026] [::1]:44486 [200]: GET /css/style.css
+[Sun May 17 15:40:45 2026] [::1]:44490 [200]: GET /js/main.js
+[Sun May 17 15:40:45 2026] [::1]:44490 Closing
+[Sun May 17 15:40:45 2026] [::1]:44486 Closing
+[Sun May 17 15:40:47 2026] [::1]:44506 Accepted
+[Sun May 17 15:40:47 2026] [::1]:44506 [302]: POST /index.php?url=auth/login
+[Sun May 17 15:40:47 2026] [::1]:44506 Closing
+[Sun May 17 15:40:47 2026] [::1]:44508 Accepted
+[Sun May 17 15:40:47 2026] [::1]:44508 [200]: GET /index.php?url=client/index
+[Sun May 17 15:40:47 2026] [::1]:44508 Closing
+[Sun May 17 15:40:47 2026] [::1]:44524 Accepted
+[Sun May 17 15:40:47 2026] [::1]:44526 Accepted
+[Sun May 17 15:40:47 2026] [::1]:44524 [200]: GET /css/style.css
+[Sun May 17 15:40:47 2026] [::1]:44524 Closing
+[Sun May 17 15:40:47 2026] [::1]:44526 [200]: GET /js/main.js
+[Sun May 17 15:40:47 2026] [::1]:44526 Closing
+[Sun May 17 15:40:49 2026] [::1]:44536 Accepted
+[Sun May 17 15:40:49 2026] [::1]:44536 [200]: GET /index.php?url=client/buy
+[Sun May 17 15:40:49 2026] [::1]:44536 Closing
+[Sun May 17 15:40:49 2026] [::1]:44550 Accepted
+[Sun May 17 15:40:49 2026] [::1]:44550 [200]: GET /css/style.css
+[Sun May 17 15:40:49 2026] [::1]:44550 Closing
+[Sun May 17 15:40:49 2026] [::1]:44558 Accepted
+[Sun May 17 15:40:49 2026] [::1]:44558 [200]: GET /js/main.js
+[Sun May 17 15:40:49 2026] [::1]:44558 Closing
+[Sun May 17 15:40:51 2026] [::1]:57272 Accepted
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:40:51 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:40:51 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+[Sun May 17 15:40:51 2026] [::1]:57272 [302]: POST /index.php?url=client/buy
+[Sun May 17 15:40:51 2026] [::1]:57272 Closing
+[Sun May 17 15:40:51 2026] [::1]:57274 Accepted
+[Sun May 17 15:40:51 2026] [::1]:57274 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:40:51 2026] [::1]:57274 Closing
+[Sun May 17 15:40:51 2026] [::1]:57280 Accepted
+[Sun May 17 15:40:51 2026] [::1]:57296 Accepted
+[Sun May 17 15:40:51 2026] [::1]:57280 [200]: GET /css/style.css
+[Sun May 17 15:40:51 2026] [::1]:57296 [200]: GET /js/main.js
+[Sun May 17 15:40:51 2026] [::1]:57280 Closing
+[Sun May 17 15:40:51 2026] [::1]:57296 Closing
+[Sun May 17 15:44:50 2026] [::1]:40746 Accepted
+[Sun May 17 15:44:50 2026] [::1]:40746 [200]: GET /index.php?url=auth/register
+[Sun May 17 15:44:50 2026] [::1]:40746 Closing
+[Sun May 17 15:44:50 2026] [::1]:40758 Accepted
+[Sun May 17 15:44:50 2026] [::1]:40774 Accepted
+[Sun May 17 15:44:50 2026] [::1]:40758 [200]: GET /css/style.css
+[Sun May 17 15:44:50 2026] [::1]:40774 [200]: GET /js/main.js
+[Sun May 17 15:44:50 2026] [::1]:40758 Closing
+[Sun May 17 15:44:50 2026] [::1]:40774 Closing
+[Sun May 17 15:44:51 2026] [::1]:38870 Accepted
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:44:51 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+[Sun May 17 15:44:51 2026] [::1]:38870 [302]: POST /index.php?url=auth/register
+[Sun May 17 15:44:51 2026] [::1]:38870 Closing
+[Sun May 17 15:44:51 2026] [::1]:38886 Accepted
+[Sun May 17 15:44:51 2026] [::1]:38886 [200]: GET /index.php?url=auth/login
+[Sun May 17 15:44:51 2026] [::1]:38886 Closing
+[Sun May 17 15:44:51 2026] [::1]:38892 Accepted
+[Sun May 17 15:44:51 2026] [::1]:38892 [200]: GET /css/style.css
+[Sun May 17 15:44:51 2026] [::1]:38892 Closing
+[Sun May 17 15:44:51 2026] [::1]:38902 Accepted
+[Sun May 17 15:44:51 2026] [::1]:38902 [200]: GET /js/main.js
+[Sun May 17 15:44:51 2026] [::1]:38902 Closing
+[Sun May 17 15:44:53 2026] [::1]:38910 Accepted
+[Sun May 17 15:44:53 2026] [::1]:38910 [200]: GET /index.php?url=auth/login
+[Sun May 17 15:44:53 2026] [::1]:38910 Closing
+[Sun May 17 15:44:53 2026] [::1]:38924 Accepted
+[Sun May 17 15:44:53 2026] [::1]:38930 Accepted
+[Sun May 17 15:44:53 2026] [::1]:38924 [200]: GET /css/style.css
+[Sun May 17 15:44:53 2026] [::1]:38930 [200]: GET /js/main.js
+[Sun May 17 15:44:53 2026] [::1]:38924 Closing
+[Sun May 17 15:44:53 2026] [::1]:38930 Closing
+[Sun May 17 15:44:55 2026] [::1]:38938 Accepted
+[Sun May 17 15:44:55 2026] [::1]:38938 [302]: POST /index.php?url=auth/login
+[Sun May 17 15:44:55 2026] [::1]:38938 Closing
+[Sun May 17 15:44:55 2026] [::1]:38948 Accepted
+[Sun May 17 15:44:55 2026] [::1]:38948 [200]: GET /index.php?url=client/index
+[Sun May 17 15:44:55 2026] [::1]:38948 Closing
+[Sun May 17 15:44:55 2026] [::1]:38964 Accepted
+[Sun May 17 15:44:55 2026] [::1]:38964 [200]: GET /css/style.css
+[Sun May 17 15:44:55 2026] [::1]:38964 Closing
+[Sun May 17 15:44:55 2026] [::1]:38974 Accepted
+[Sun May 17 15:44:55 2026] [::1]:38974 [200]: GET /js/main.js
+[Sun May 17 15:44:55 2026] [::1]:38974 Closing
+[Sun May 17 15:44:57 2026] [::1]:38986 Accepted
+[Sun May 17 15:44:57 2026] [::1]:38986 [200]: GET /index.php?url=client/buy
+[Sun May 17 15:44:57 2026] [::1]:38986 Closing
+[Sun May 17 15:44:57 2026] [::1]:38992 Accepted
+[Sun May 17 15:44:57 2026] [::1]:38992 [200]: GET /css/style.css
+[Sun May 17 15:44:57 2026] [::1]:38992 Closing
+[Sun May 17 15:44:57 2026] [::1]:39002 Accepted
+[Sun May 17 15:44:57 2026] [::1]:39002 [200]: GET /js/main.js
+[Sun May 17 15:44:57 2026] [::1]:39002 Closing
+[Sun May 17 15:44:59 2026] [::1]:39014 Accepted
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:44:59 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:44:59 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+[Sun May 17 15:44:59 2026] [::1]:39014 [302]: POST /index.php?url=client/buy
+[Sun May 17 15:44:59 2026] [::1]:39014 Closing
+[Sun May 17 15:44:59 2026] [::1]:39016 Accepted
+[Sun May 17 15:44:59 2026] [::1]:39016 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:44:59 2026] [::1]:39016 Closing
+[Sun May 17 15:44:59 2026] [::1]:39024 Accepted
+[Sun May 17 15:44:59 2026] [::1]:39040 Accepted
+[Sun May 17 15:44:59 2026] [::1]:39024 [200]: GET /css/style.css
+[Sun May 17 15:44:59 2026] [::1]:39040 [200]: GET /js/main.js
+[Sun May 17 15:44:59 2026] [::1]:39024 Closing
+[Sun May 17 15:44:59 2026] [::1]:39040 Closing
+[Sun May 17 15:47:22 2026] [::1]:36398 Accepted
+[Sun May 17 15:47:22 2026] [::1]:36398 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:47:22 2026] [::1]:36398 Closing
+[Sun May 17 15:47:43 2026] [::1]:55106 Accepted
+[Sun May 17 15:47:43 2026] [::1]:55106 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:47:43 2026] [::1]:55106 Closing
+[Sun May 17 15:48:42 2026] [::1]:41760 Accepted
+[Sun May 17 15:48:42 2026] [::1]:41760 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:48:42 2026] [::1]:41760 Closing
+[Sun May 17 15:51:04 2026] [::1]:60546 Accepted
+[Sun May 17 15:51:04 2026] [::1]:60546 [302]: POST /index.php?url=auth/login
+[Sun May 17 15:51:04 2026] [::1]:60546 Closing
+[Sun May 17 15:51:48 2026] [::1]:46750 Accepted
+[Sun May 17 15:51:48 2026] [::1]:46750 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:51:48 2026] [::1]:46750 Closing
+[Sun May 17 15:55:11 2026] [::1]:54096 Accepted
+[Sun May 17 15:55:11 2026] [::1]:54096 [200]: GET /index.php?url=auth/register
+[Sun May 17 15:55:11 2026] [::1]:54096 Closing
+[Sun May 17 15:55:11 2026] [::1]:54106 Accepted
+[Sun May 17 15:55:11 2026] [::1]:54122 Accepted
+[Sun May 17 15:55:11 2026] [::1]:54106 [200]: GET /css/style.css
+[Sun May 17 15:55:11 2026] [::1]:54122 [200]: GET /js/main.js
+[Sun May 17 15:55:11 2026] [::1]:54122 Closing
+[Sun May 17 15:55:11 2026] [::1]:54106 Closing
+[Sun May 17 15:55:13 2026] [::1]:54128 Accepted
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:55:13 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+[Sun May 17 15:55:13 2026] [::1]:54128 [302]: POST /index.php?url=auth/register
+[Sun May 17 15:55:13 2026] [::1]:54128 Closing
+[Sun May 17 15:55:13 2026] [::1]:54142 Accepted
+[Sun May 17 15:55:13 2026] [::1]:54142 [200]: GET /index.php?url=auth/login
+[Sun May 17 15:55:13 2026] [::1]:54142 Closing
+[Sun May 17 15:55:13 2026] [::1]:54154 Accepted
+[Sun May 17 15:55:13 2026] [::1]:54170 Accepted
+[Sun May 17 15:55:13 2026] [::1]:54154 [200]: GET /css/style.css
+[Sun May 17 15:55:13 2026] [::1]:54170 [200]: GET /js/main.js
+[Sun May 17 15:55:13 2026] [::1]:54154 Closing
+[Sun May 17 15:55:13 2026] [::1]:54170 Closing
+[Sun May 17 15:55:15 2026] [::1]:54174 Accepted
+[Sun May 17 15:55:15 2026] [::1]:54174 [200]: GET /index.php?url=auth/login
+[Sun May 17 15:55:15 2026] [::1]:54174 Closing
+[Sun May 17 15:55:15 2026] [::1]:54180 Accepted
+[Sun May 17 15:55:15 2026] [::1]:54180 [200]: GET /css/style.css
+[Sun May 17 15:55:15 2026] [::1]:54182 Accepted
+[Sun May 17 15:55:15 2026] [::1]:54180 Closing
+[Sun May 17 15:55:15 2026] [::1]:54182 [200]: GET /js/main.js
+[Sun May 17 15:55:15 2026] [::1]:54182 Closing
+[Sun May 17 15:55:16 2026] [::1]:54184 Accepted
+[Sun May 17 15:55:16 2026] [::1]:54184 [302]: POST /index.php?url=auth/login
+[Sun May 17 15:55:16 2026] [::1]:54184 Closing
+[Sun May 17 15:55:16 2026] [::1]:54198 Accepted
+[Sun May 17 15:55:16 2026] [::1]:54198 [200]: GET /index.php?url=client/index
+[Sun May 17 15:55:16 2026] [::1]:54198 Closing
+[Sun May 17 15:55:16 2026] [::1]:54204 Accepted
+[Sun May 17 15:55:16 2026] [::1]:54204 [200]: GET /css/style.css
+[Sun May 17 15:55:16 2026] [::1]:54204 Closing
+[Sun May 17 15:55:16 2026] [::1]:54212 Accepted
+[Sun May 17 15:55:16 2026] [::1]:54212 [200]: GET /js/main.js
+[Sun May 17 15:55:16 2026] [::1]:54212 Closing
+[Sun May 17 15:55:18 2026] [::1]:54220 Accepted
+[Sun May 17 15:55:18 2026] [::1]:54220 [200]: GET /index.php?url=client/buy
+[Sun May 17 15:55:18 2026] [::1]:54220 Closing
+[Sun May 17 15:55:18 2026] [::1]:54228 Accepted
+[Sun May 17 15:55:18 2026] [::1]:54232 Accepted
+[Sun May 17 15:55:18 2026] [::1]:54228 [200]: GET /css/style.css
+[Sun May 17 15:55:18 2026] [::1]:54232 [200]: GET /js/main.js
+[Sun May 17 15:55:18 2026] [::1]:54228 Closing
+[Sun May 17 15:55:18 2026] [::1]:54232 Closing
+[Sun May 17 15:55:20 2026] [::1]:54238 Accepted
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:55:20 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+sh: 1: /usr/sbin/sendmail: not found
+[Sun May 17 15:55:20 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
+[Sun May 17 15:55:20 2026] [::1]:54238 [302]: POST /index.php?url=client/buy
+[Sun May 17 15:55:20 2026] [::1]:54238 Closing
+[Sun May 17 15:55:20 2026] [::1]:45084 Accepted
+[Sun May 17 15:55:20 2026] [::1]:45084 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:55:20 2026] [::1]:45084 Closing
+[Sun May 17 15:55:20 2026] [::1]:45092 Accepted
+[Sun May 17 15:55:20 2026] [::1]:45106 Accepted
+[Sun May 17 15:55:20 2026] [::1]:45092 [200]: GET /css/style.css
+[Sun May 17 15:55:20 2026] [::1]:45106 [200]: GET /js/main.js
+[Sun May 17 15:55:20 2026] [::1]:45092 Closing
+[Sun May 17 15:55:20 2026] [::1]:45106 Closing
+[Sun May 17 15:57:41 2026] [::1]:43762 Accepted
+[Sun May 17 15:57:41 2026] [::1]:43762 [200]: GET /index.php?url=client/invoices
+[Sun May 17 15:57:41 2026] [::1]:43762 Closing
+[Sun May 17 15:58:36 2026] [::1]:51002 Accepted
+[Sun May 17 15:58:36 2026] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:113
+Stack trace:
+#0 /app/core/Router.php(45): Client->invoices()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 113
+[Sun May 17 15:58:36 2026] [::1]:51002 [302]: GET /index.php?url=client/invoices - Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:113
+Stack trace:
+#0 /app/core/Router.php(45): Client->invoices()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 113
+[Sun May 17 15:58:36 2026] [::1]:51002 Closing
+[Sun May 17 15:59:38 2026] [::1]:39402 Accepted
+[Sun May 17 15:59:38 2026] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:113
+Stack trace:
+#0 /app/core/Router.php(45): Client->invoices()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 113
+[Sun May 17 15:59:38 2026] [::1]:39402 [302]: GET /index.php?url=client/invoices - Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:113
+Stack trace:
+#0 /app/core/Router.php(45): Client->invoices()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 113
+[Sun May 17 15:59:38 2026] [::1]:39402 Closing
+[Sun May 17 16:00:32 2026] [::1]:54276 Accepted
+[Sun May 17 16:00:32 2026] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:21
+Stack trace:
+#0 /app/core/Router.php(45): Client->index()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 21
+[Sun May 17 16:00:32 2026] [::1]:54276 [302]: GET /index.php?url=client/index - Uncaught Error: Call to a member function query() on null in /app/app/controllers/Client.php:21
+Stack trace:
+#0 /app/core/Router.php(45): Client->index()
+#1 /app/public/index.php(14): Router->__construct()
+#2 {main}
+  thrown in /app/app/controllers/Client.php on line 21
+[Sun May 17 16:00:32 2026] [::1]:54276 Closing
+[Sun May 17 16:01:22 2026] [::1]:50794 Accepted
+[Sun May 17 16:01:22 2026] [::1]:50794 [200]: POST /index.php?url=auth/login
+[Sun May 17 16:01:22 2026] [::1]:50794 Closing
+[Sun May 17 16:02:11 2026] [::1]:36170 Accepted
+[Sun May 17 16:02:11 2026] [::1]:36170 [200]: GET /index.php?url=auth/login
+[Sun May 17 16:02:11 2026] [::1]:36170 Closing
+[Sun May 17 16:03:04 2026] [::1]:52646 Accepted
+[Sun May 17 16:03:04 2026] [::1]:52646 [302]: POST /index.php?url=auth/login
+[Sun May 17 16:03:04 2026] [::1]:52646 Closing
+[Sun May 17 16:03:53 2026] [::1]:37252 Accepted
+[Sun May 17 16:03:53 2026] [::1]:37252 [200]: GET /index.php?url=client/invoices
+[Sun May 17 16:03:53 2026] [::1]:37252 Closing
+[Sun May 17 16:04:42 2026] [::1]:47366 Accepted
+[Sun May 17 16:04:42 2026] [::1]:47366 [200]: GET /index.php?url=client/pay/4
+[Sun May 17 16:04:42 2026] [::1]:47366 Closing
+[Sun May 17 16:05:34 2026] [::1]:55226 Accepted
+[Sun May 17 16:05:34 2026] [::1]:55226 [200]: GET /index.php?url=client/pay/4
+[Sun May 17 16:05:34 2026] [::1]:55226 Closing
+[Sun May 17 16:05:48 2026] [::1]:45988 Accepted
+[Sun May 17 16:05:48 2026] [::1]:45988 [302]: POST /index.php?url=client/submitUtr/4
+[Sun May 17 16:05:48 2026] [::1]:45988 Closing
+[Sun May 17 16:07:31 2026] [::1]:40384 Accepted
+[Sun May 17 16:07:31 2026] [::1]:40384 [200]: GET /index.php?url=client/invoices
+[Sun May 17 16:07:31 2026] [::1]:40384 Closing
+[Sun May 17 16:07:55 2026] [::1]:59444 Accepted
+[Sun May 17 16:07:55 2026] [::1]:59444 [200]: GET /index.php?url=client/invoices
+[Sun May 17 16:07:55 2026] [::1]:59444 Closing
+[Sun May 17 16:10:25 2026] [::1]:37636 Accepted
+[Sun May 17 16:10:25 2026] [::1]:37636 [200]: POST /index.php?url=auth/login
+[Sun May 17 16:10:25 2026] [::1]:37636 Closing
+[Sun May 17 16:11:23 2026] [::1]:49700 Accepted
+[Sun May 17 16:11:23 2026] [::1]:49700 [200]: GET /index.php?url=auth/login
+[Sun May 17 16:11:23 2026] [::1]:49700 Closing
+[Sun May 17 16:12:27 2026] [::1]:38704 Accepted
+[Sun May 17 16:12:27 2026] [::1]:38704 [302]: POST /index.php?url=auth/login
+[Sun May 17 16:12:27 2026] [::1]:38704 Closing
+[Sun May 17 16:13:31 2026] [::1]:41722 Accepted
+[Sun May 17 16:13:31 2026] [::1]:41722 [200]: GET /index.php?url=admin/invoices
+[Sun May 17 16:13:31 2026] [::1]:41722 Closing
+[Sun May 17 16:14:29 2026] [::1]:52232 Accepted
+[Sun May 17 16:14:29 2026] [::1]:52232 [200]: GET /index.php?url=admin/invoices
+[Sun May 17 16:14:29 2026] [::1]:52232 Closing

@@ -196,3 +196,9 @@ CREATE TABLE IF NOT EXISTS ticket_replies (
 -- Insert Default Admin User (Password is 'admin123')
 INSERT INTO users (name, email, password, role) VALUES
 ('Admin', 'admin@abhish.in', '$argon2id$v=19$m=65536,t=4,p=2$eEN6UzZtLmZyM2NMc3RaTw$kuPunyAtmWwCIZEomV7UgUXdKw+4PsXB4TzgBhv24JM', 'admin');
+USE shared_hosting;
+INSERT IGNORE INTO settings (setting_key, setting_value, description) VALUES
+('upi_id', 'example@upi', 'Admin UPI ID for receiving payments');
+
+ALTER TABLE invoices ADD COLUMN utr_number VARCHAR(100) DEFAULT NULL AFTER payment_method;
+ALTER TABLE invoices MODIFY COLUMN status ENUM('unpaid', 'pending_verification', 'paid', 'cancelled') DEFAULT 'unpaid';
