@@ -17,7 +17,7 @@
                 ?>
 
                 <?php foreach($groupedServices as $category => $services): ?>
-                    <h3 style="margin-top: 30px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--border-color); color: var(--primary-color);"><?= htmlspecialchars($category); ?></h3>
+                    <h3 style="margin-top: 30px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--border-color); color: var(--accent-primary);"><?= htmlspecialchars($category); ?></h3>
                     <div class="grid-2">
                         <?php foreach($services as $service): ?>
                             <div class="card" style="display: flex; flex-direction: column;">

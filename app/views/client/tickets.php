@@ -18,7 +18,7 @@
                     </div>
                 <?php endif; ?>
 
-                <div id="newTicketForm" class="card" style="display: none; margin-bottom: 30px; border: 1px solid var(--primary-color);">
+                <div id="newTicketForm" class="card" style="display: none; margin-bottom: 30px; border: 1px solid var(--accent-primary);">
                     <h3 style="margin-bottom: 15px;">Open New Ticket</h3>
                     <form action="<?= URLROOT; ?>/index.php?url=client/tickets" method="post">
                         <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">

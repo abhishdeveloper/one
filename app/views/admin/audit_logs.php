@@ -30,7 +30,7 @@
                                             <strong><?= htmlspecialchars($log->name); ?></strong><br>
                                             <small style="color: var(--text-muted);"><?= htmlspecialchars($log->email); ?></small>
                                         </td>
-                                        <td style="padding: 12px; font-weight: 500; color: var(--primary-color);"><?= htmlspecialchars($log->action); ?></td>
+                                        <td style="padding: 12px; font-weight: 500; color: var(--accent-primary);"><?= htmlspecialchars($log->action); ?></td>
                                         <td style="padding: 12px; font-family: monospace; font-size: 0.9rem;"><?= htmlspecialchars($log->ip_address); ?></td>
                                     </tr>
                                 <?php endforeach; ?>

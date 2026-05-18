@@ -38,7 +38,7 @@
                             <img src="<?= $qrUrl; ?>" alt="UPI QR Code" style="border: 10px solid white; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 
                             <p style="font-size: 1.2rem; margin-bottom: 5px;"><strong>UPI ID:</strong> <?= htmlspecialchars($upiId); ?></p>
-                            <p style="font-size: 1.5rem; color: var(--primary-color); font-weight: bold;">₹<?= $amount; ?></p>
+                            <p style="font-size: 1.5rem; color: var(--accent-primary); font-weight: bold;">₹<?= $amount; ?></p>
                         <?php endif; ?>
                     </div>
 
@@ -47,7 +47,7 @@
                         <h3 style="margin-bottom: 15px;">Submit Transaction Details</h3>
                         <p style="margin-bottom: 20px; color: var(--text-muted);">After completing the payment using the QR code or UPI ID, please enter the 12-digit UTR (Unique Transaction Reference) or Transaction ID below.</p>
 
-                        <div style="background: var(--bg-dark); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+                        <div style="background: var(--bg-main); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
                             <p><strong>Invoice:</strong> <?= htmlspecialchars($data['invoice']->service_name ?? 'Custom Invoice'); ?></p>
                             <p><strong>Amount:</strong> ₹<?= number_format($data['invoice']->amount, 2); ?></p>
                         </div>

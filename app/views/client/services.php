@@ -26,7 +26,7 @@
 
                                 <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;"><?= htmlspecialchars($service->description); ?></p>
 
-                                <div style="background: var(--bg-dark); padding: 10px; border-radius: 4px; font-size: 0.9rem;">
+                                <div style="background: var(--bg-main); padding: 10px; border-radius: 4px; font-size: 0.9rem;">
                                     <p style="margin-bottom: 5px;"><strong>Domain/Target:</strong> <?= htmlspecialchars($service->domain_name ?? 'Not specified'); ?></p>
                                     <p style="margin-bottom: 5px;"><strong>Billing:</strong> $<?= number_format($service->price, 2); ?> (<?= ucfirst($service->billing_cycle); ?>)</p>
                                     <?php if($service->next_due_date): ?>
@@ -47,7 +47,7 @@
                                         <span>Order Status Progress</span>
                                         <span><?= $progress; ?>%</span>
                                     </div>
-                                    <div style="width: 100%; background-color: var(--bg-dark); border-radius: 4px; height: 8px; overflow: hidden;">
+                                    <div style="width: 100%; background-color: var(--bg-main); border-radius: 4px; height: 8px; overflow: hidden;">
                                         <div style="width: <?= $progress; ?>%; background-color: <?= $progColor; ?>; height: 100%;"></div>
                                     </div>
                                 </div>

@@ -14,7 +14,7 @@
                 <div class="grid-2" style="margin-bottom: 30px;">
                     <div class="card">
                         <h3>Active Services</h3>
-                        <p style="font-size: 2.5rem; color: var(--primary-color); font-weight: bold; margin-top: 10px;">
+                        <p style="font-size: 2.5rem; color: var(--accent-primary); font-weight: bold; margin-top: 10px;">
                             <?= count(array_filter($data['services'], fn($s) => $s->status == 'active')); ?>
                         </p>
                         <a href="<?= URLROOT; ?>/index.php?url=client/services" style="display: inline-block; margin-top: 10px;">View All Services →</a>

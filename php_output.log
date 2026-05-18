@@ -1,300 +1,37 @@
-[Mon May 18 05:19:42 2026] PHP 8.3.6 Development Server (http://localhost:8000) started
-[Mon May 18 05:21:07 2026] [::1]:54892 Accepted
-[Mon May 18 05:21:07 2026] [::1]:54892 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:21:07 2026] [::1]:54892 Closing
-[Mon May 18 05:21:07 2026] [::1]:54904 Accepted
-[Mon May 18 05:21:07 2026] [::1]:54906 Accepted
-[Mon May 18 05:21:07 2026] [::1]:54904 [200]: GET /css/style.css
-[Mon May 18 05:21:07 2026] [::1]:54906 [200]: GET /js/main.js
-[Mon May 18 05:21:07 2026] [::1]:54904 Closing
-[Mon May 18 05:21:07 2026] [::1]:54906 Closing
-[Mon May 18 05:21:09 2026] [::1]:50742 Accepted
-[Mon May 18 05:21:09 2026] [::1]:50742 [302]: POST /index.php?url=auth/login
-[Mon May 18 05:21:09 2026] [::1]:50742 Closing
-[Mon May 18 05:21:09 2026] [::1]:50758 Accepted
-[Mon May 18 05:21:09 2026] [::1]:50758 [200]: GET /index.php?url=admin/index
-[Mon May 18 05:21:09 2026] [::1]:50758 Closing
-[Mon May 18 05:21:09 2026] [::1]:50762 Accepted
-[Mon May 18 05:21:09 2026] [::1]:50774 Accepted
-[Mon May 18 05:21:09 2026] [::1]:50762 [200]: GET /css/style.css
-[Mon May 18 05:21:09 2026] [::1]:50774 [200]: GET /js/main.js
-[Mon May 18 05:21:09 2026] [::1]:50762 Closing
-[Mon May 18 05:21:09 2026] [::1]:50774 Closing
-[Mon May 18 05:21:11 2026] [::1]:50776 Accepted
-[Mon May 18 05:21:11 2026] [::1]:50776 [200]: GET /index.php?url=admin/addService
-[Mon May 18 05:21:11 2026] [::1]:50776 Closing
-[Mon May 18 05:21:11 2026] [::1]:50784 Accepted
-[Mon May 18 05:21:11 2026] [::1]:50784 [200]: GET /css/style.css
-[Mon May 18 05:21:11 2026] [::1]:50784 Closing
-[Mon May 18 05:21:11 2026] [::1]:50788 Accepted
-[Mon May 18 05:21:11 2026] [::1]:50788 [200]: GET /js/main.js
-[Mon May 18 05:21:11 2026] [::1]:50788 Closing
-[Mon May 18 05:21:15 2026] [::1]:50790 Accepted
-[Mon May 18 05:21:15 2026] [::1]:50790 [302]: POST /index.php?url=admin/addService
-[Mon May 18 05:21:15 2026] [::1]:50790 Closing
-[Mon May 18 05:21:15 2026] [::1]:50796 Accepted
-[Mon May 18 05:21:15 2026] [::1]:50796 [200]: GET /index.php?url=admin/services
-[Mon May 18 05:21:15 2026] [::1]:50796 Closing
-[Mon May 18 05:21:15 2026] [::1]:50802 Accepted
-[Mon May 18 05:21:15 2026] [::1]:50814 Accepted
-[Mon May 18 05:21:15 2026] [::1]:50802 [200]: GET /css/style.css
-[Mon May 18 05:21:15 2026] [::1]:50814 [200]: GET /js/main.js
-[Mon May 18 05:21:15 2026] [::1]:50802 Closing
-[Mon May 18 05:21:15 2026] [::1]:50814 Closing
-[Mon May 18 05:21:18 2026] [::1]:58974 Accepted
-[Mon May 18 05:21:18 2026] [::1]:58974 [302]: GET /index.php?url=auth/logout
-[Mon May 18 05:21:18 2026] [::1]:58974 Closing
-[Mon May 18 05:21:18 2026] [::1]:58976 Accepted
-[Mon May 18 05:21:18 2026] [::1]:58976 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:21:18 2026] [::1]:58976 Closing
-[Mon May 18 05:21:18 2026] [::1]:58984 Accepted
-[Mon May 18 05:21:18 2026] [::1]:58994 Accepted
-[Mon May 18 05:21:18 2026] [::1]:58984 [200]: GET /css/style.css
-[Mon May 18 05:21:18 2026] [::1]:58994 [200]: GET /js/main.js
-[Mon May 18 05:21:18 2026] [::1]:58984 Closing
-[Mon May 18 05:21:18 2026] [::1]:58994 Closing
-[Mon May 18 05:21:19 2026] [::1]:59002 Accepted
-[Mon May 18 05:21:19 2026] [::1]:59002 [200]: GET /index.php?url=auth/register
-[Mon May 18 05:21:19 2026] [::1]:59002 Closing
-[Mon May 18 05:21:19 2026] [::1]:59004 Accepted
-[Mon May 18 05:21:19 2026] [::1]:59006 Accepted
-[Mon May 18 05:21:19 2026] [::1]:59004 [200]: GET /css/style.css
-[Mon May 18 05:21:19 2026] [::1]:59006 [200]: GET /js/main.js
-[Mon May 18 05:21:19 2026] [::1]:59004 Closing
-[Mon May 18 05:21:19 2026] [::1]:59006 Closing
-[Mon May 18 05:21:21 2026] [::1]:59010 Accepted
-sh: 1: /usr/sbin/sendmail: not found
-[Mon May 18 05:21:21 2026] Message could not be sent. Mailer Error: Could not instantiate mail function.
-[Mon May 18 05:21:21 2026] [::1]:59010 [302]: POST /index.php?url=auth/register
-[Mon May 18 05:21:21 2026] [::1]:59010 Closing
-[Mon May 18 05:21:21 2026] [::1]:59020 Accepted
-[Mon May 18 05:21:21 2026] [::1]:59020 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:21:21 2026] [::1]:59020 Closing
-[Mon May 18 05:21:21 2026] [::1]:59022 Accepted
-[Mon May 18 05:21:21 2026] [::1]:59032 Accepted
-[Mon May 18 05:21:21 2026] [::1]:59022 [200]: GET /css/style.css
-[Mon May 18 05:21:21 2026] [::1]:59032 [200]: GET /js/main.js
-[Mon May 18 05:21:21 2026] [::1]:59032 Closing
-[Mon May 18 05:21:21 2026] [::1]:59022 Closing
-[Mon May 18 05:21:23 2026] [::1]:59046 Accepted
-[Mon May 18 05:21:23 2026] [::1]:59046 [302]: POST /index.php?url=auth/login
-[Mon May 18 05:21:23 2026] [::1]:59046 Closing
-[Mon May 18 05:21:23 2026] [::1]:59050 Accepted
-[Mon May 18 05:21:23 2026] [::1]:59050 [200]: GET /index.php?url=client/index
-[Mon May 18 05:21:23 2026] [::1]:59050 Closing
-[Mon May 18 05:21:23 2026] [::1]:59056 Accepted
-[Mon May 18 05:21:23 2026] [::1]:59056 [200]: GET /css/style.css
-[Mon May 18 05:21:23 2026] [::1]:59056 Closing
-[Mon May 18 05:21:23 2026] [::1]:59066 Accepted
-[Mon May 18 05:21:23 2026] [::1]:59066 [200]: GET /js/main.js
-[Mon May 18 05:21:23 2026] [::1]:59066 Closing
-[Mon May 18 05:21:25 2026] [::1]:59080 Accepted
-[Mon May 18 05:21:25 2026] [::1]:59080 [200]: GET /index.php?url=client/buy
-[Mon May 18 05:21:25 2026] [::1]:59080 Closing
-[Mon May 18 05:21:25 2026] [::1]:59096 Accepted
-[Mon May 18 05:21:25 2026] [::1]:59096 [200]: GET /css/style.css
-[Mon May 18 05:21:25 2026] [::1]:59096 Closing
-[Mon May 18 05:21:25 2026] [::1]:59108 Accepted
-[Mon May 18 05:21:25 2026] [::1]:59108 [200]: GET /js/main.js
-[Mon May 18 05:21:25 2026] [::1]:59108 Closing
-[Mon May 18 05:21:29 2026] [::1]:52680 Accepted
-[Mon May 18 05:21:29 2026] [::1]:52680 [200]: GET /index.php?url=client/checkout/11
-[Mon May 18 05:21:29 2026] [::1]:52680 Closing
-[Mon May 18 05:25:36 2026] [::1]:57036 Accepted
-[Mon May 18 05:25:36 2026] [::1]:57036 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:25:36 2026] [::1]:57036 Closing
-[Mon May 18 05:25:36 2026] [::1]:57052 Accepted
-[Mon May 18 05:25:36 2026] [::1]:57056 Accepted
-[Mon May 18 05:25:36 2026] [::1]:57052 [200]: GET /css/style.css
-[Mon May 18 05:25:36 2026] [::1]:57056 [200]: GET /js/main.js
-[Mon May 18 05:25:36 2026] [::1]:57052 Closing
-[Mon May 18 05:25:36 2026] [::1]:57056 Closing
-[Mon May 18 05:25:38 2026] [::1]:57060 Accepted
-[Mon May 18 05:25:38 2026] [::1]:57060 [302]: POST /index.php?url=auth/login
-[Mon May 18 05:25:38 2026] [::1]:57060 Closing
-[Mon May 18 05:25:38 2026] [::1]:57062 Accepted
-[Mon May 18 05:25:38 2026] [::1]:57062 [200]: GET /index.php?url=admin/index
-[Mon May 18 05:25:38 2026] [::1]:57062 Closing
-[Mon May 18 05:25:38 2026] [::1]:57072 Accepted
-[Mon May 18 05:25:38 2026] [::1]:57072 [200]: GET /css/style.css
-[Mon May 18 05:25:38 2026] [::1]:57072 Closing
-[Mon May 18 05:25:38 2026] [::1]:57074 Accepted
-[Mon May 18 05:25:38 2026] [::1]:57074 [200]: GET /js/main.js
-[Mon May 18 05:25:38 2026] [::1]:57074 Closing
-[Mon May 18 05:25:40 2026] [::1]:37546 Accepted
-[Mon May 18 05:25:40 2026] [::1]:37546 [200]: GET /index.php?url=admin/settings
-[Mon May 18 05:25:40 2026] [::1]:37546 Closing
-[Mon May 18 05:25:40 2026] [::1]:37554 Accepted
-[Mon May 18 05:25:40 2026] [::1]:37570 Accepted
-[Mon May 18 05:25:40 2026] [::1]:37554 [200]: GET /css/style.css
-[Mon May 18 05:25:40 2026] [::1]:37570 [200]: GET /js/main.js
-[Mon May 18 05:25:40 2026] [::1]:37554 Closing
-[Mon May 18 05:25:40 2026] [::1]:37570 Closing
-[Mon May 18 05:25:42 2026] [::1]:37578 Accepted
-[Mon May 18 05:25:42 2026] [::1]:37578 [302]: POST /index.php?url=admin/settings
-[Mon May 18 05:25:42 2026] [::1]:37578 Closing
-[Mon May 18 05:25:42 2026] [::1]:37584 Accepted
-[Mon May 18 05:25:42 2026] [::1]:37584 [200]: GET /index.php?url=admin/settings
-[Mon May 18 05:25:42 2026] [::1]:37584 Closing
-[Mon May 18 05:25:42 2026] [::1]:37590 Accepted
-[Mon May 18 05:25:42 2026] [::1]:37592 Accepted
-[Mon May 18 05:25:42 2026] [::1]:37590 [200]: GET /css/style.css
-[Mon May 18 05:25:42 2026] [::1]:37592 [200]: GET /js/main.js
-[Mon May 18 05:25:42 2026] [::1]:37592 Closing
-[Mon May 18 05:25:42 2026] [::1]:37590 Closing
-[Mon May 18 05:25:44 2026] [::1]:37608 Accepted
-[Mon May 18 05:25:44 2026] [::1]:37608 [200]: GET /index.php?url=admin/auditLogs
-[Mon May 18 05:25:44 2026] [::1]:37608 Closing
-[Mon May 18 05:25:44 2026] [::1]:37616 Accepted
-[Mon May 18 05:25:44 2026] [::1]:37616 [200]: GET /css/style.css
-[Mon May 18 05:25:44 2026] [::1]:37616 Closing
-[Mon May 18 05:25:44 2026] [::1]:37626 Accepted
-[Mon May 18 05:25:44 2026] [::1]:37626 [200]: GET /js/main.js
-[Mon May 18 05:25:44 2026] [::1]:37626 Closing
-[Mon May 18 05:25:47 2026] [::1]:37634 Accepted
-[Mon May 18 05:25:47 2026] [::1]:37634 [302]: GET /index.php?url=auth/logout
-[Mon May 18 05:25:47 2026] [::1]:37634 Closing
-[Mon May 18 05:25:47 2026] [::1]:37646 Accepted
-[Mon May 18 05:25:47 2026] [::1]:37646 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:25:47 2026] [::1]:37646 Closing
-[Mon May 18 05:25:47 2026] [::1]:37652 Accepted
-[Mon May 18 05:25:47 2026] [::1]:37652 [200]: GET /css/style.css
-[Mon May 18 05:25:47 2026] [::1]:37652 Closing
-[Mon May 18 05:25:47 2026] [::1]:37666 Accepted
-[Mon May 18 05:25:47 2026] [::1]:37666 [200]: GET /js/main.js
-[Mon May 18 05:25:47 2026] [::1]:37666 Closing
-[Mon May 18 05:25:48 2026] [::1]:37670 Accepted
-[Mon May 18 05:25:48 2026] [::1]:37670 [200]: GET /index.php?url=auth/register
-[Mon May 18 05:25:48 2026] [::1]:37670 Closing
-[Mon May 18 05:25:48 2026] [::1]:37674 Accepted
-[Mon May 18 05:25:48 2026] [::1]:37690 Accepted
-[Mon May 18 05:25:48 2026] [::1]:37674 [200]: GET /css/style.css
-[Mon May 18 05:25:48 2026] [::1]:37690 [200]: GET /js/main.js
-[Mon May 18 05:25:48 2026] [::1]:37674 Closing
-[Mon May 18 05:25:48 2026] [::1]:37690 Closing
-[Mon May 18 05:25:49 2026] [::1]:45742 Accepted
-[Mon May 18 05:25:49 2026] [::1]:45742 [200]: POST /index.php?url=auth/register
-[Mon May 18 05:25:49 2026] [::1]:45742 Closing
-[Mon May 18 05:25:49 2026] [::1]:45746 Accepted
-[Mon May 18 05:25:49 2026] [::1]:45752 Accepted
-[Mon May 18 05:25:49 2026] [::1]:45746 [200]: GET /css/style.css
-[Mon May 18 05:25:49 2026] [::1]:45752 [200]: GET /js/main.js
-[Mon May 18 05:25:49 2026] [::1]:45746 Closing
-[Mon May 18 05:25:49 2026] [::1]:45752 Closing
-[Mon May 18 05:25:51 2026] [::1]:45758 Accepted
-[Mon May 18 05:25:51 2026] [::1]:45758 [200]: POST /index.php?url=auth/register
-[Mon May 18 05:25:51 2026] [::1]:45758 Closing
-[Mon May 18 05:25:51 2026] [::1]:45774 Accepted
-[Mon May 18 05:25:51 2026] [::1]:45780 Accepted
-[Mon May 18 05:25:51 2026] [::1]:45774 [200]: GET /css/style.css
-[Mon May 18 05:25:51 2026] [::1]:45780 [200]: GET /js/main.js
-[Mon May 18 05:25:51 2026] [::1]:45774 Closing
-[Mon May 18 05:25:51 2026] [::1]:45780 Closing
-[Mon May 18 05:27:54 2026] [::1]:48748 Accepted
-[Mon May 18 05:27:54 2026] [::1]:48748 [200]: POST /index.php?url=auth/login
-[Mon May 18 05:27:54 2026] [::1]:48748 Closing
-[Mon May 18 05:29:25 2026] [::1]:47328 Accepted
-[Mon May 18 05:29:25 2026] [::1]:47328 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:29:25 2026] [::1]:47328 Closing
-[Mon May 18 05:30:45 2026] [::1]:56854 Accepted
-[Mon May 18 05:30:46 2026] [::1]:56854 [302]: POST /index.php?url=auth/login
-[Mon May 18 05:30:46 2026] [::1]:56854 Closing
-[Mon May 18 05:31:03 2026] [::1]:41316 Accepted
-[Mon May 18 05:31:03 2026] [::1]:41316 [200]: GET /index.php?url=client/index
-[Mon May 18 05:31:03 2026] [::1]:41316 Closing
-[Mon May 18 05:36:13 2026] [::1]:59494 Accepted
-[Mon May 18 05:36:13 2026] [::1]:59494 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:36:13 2026] [::1]:59494 Closing
-[Mon May 18 05:36:13 2026] [::1]:59506 Accepted
-[Mon May 18 05:36:13 2026] [::1]:59510 Accepted
-[Mon May 18 05:36:13 2026] [::1]:59506 [200]: GET /css/style.css
-[Mon May 18 05:36:13 2026] [::1]:59506 Closing
-[Mon May 18 05:36:13 2026] [::1]:59510 [200]: GET /js/main.js
-[Mon May 18 05:36:13 2026] [::1]:59510 Closing
-[Mon May 18 05:36:14 2026] [::1]:59516 Accepted
-[Mon May 18 05:36:14 2026] [::1]:59516 [302]: POST /index.php?url=auth/login
-[Mon May 18 05:36:14 2026] [::1]:59516 Closing
-[Mon May 18 05:36:14 2026] [::1]:59530 Accepted
-[Mon May 18 05:36:14 2026] [::1]:59530 [200]: GET /index.php?url=admin/index
-[Mon May 18 05:36:14 2026] [::1]:59530 Closing
-[Mon May 18 05:36:14 2026] [::1]:59538 Accepted
-[Mon May 18 05:36:14 2026] [::1]:59540 Accepted
-[Mon May 18 05:36:14 2026] [::1]:59538 [200]: GET /css/style.css
-[Mon May 18 05:36:14 2026] [::1]:59540 [200]: GET /js/main.js
-[Mon May 18 05:36:14 2026] [::1]:59538 Closing
-[Mon May 18 05:36:14 2026] [::1]:59540 Closing
-[Mon May 18 05:36:16 2026] [::1]:59550 Accepted
-[Mon May 18 05:36:16 2026] [::1]:59550 [200]: GET /index.php?url=admin/settings
-[Mon May 18 05:36:16 2026] [::1]:59550 Closing
-[Mon May 18 05:36:16 2026] [::1]:59560 Accepted
-[Mon May 18 05:36:16 2026] [::1]:59564 Accepted
-[Mon May 18 05:36:16 2026] [::1]:59560 [200]: GET /css/style.css
-[Mon May 18 05:36:16 2026] [::1]:59560 Closing
-[Mon May 18 05:36:16 2026] [::1]:59564 [200]: GET /js/main.js
-[Mon May 18 05:36:16 2026] [::1]:59564 Closing
-[Mon May 18 05:36:18 2026] [::1]:59568 Accepted
-[Mon May 18 05:36:18 2026] [::1]:59568 [302]: POST /index.php?url=admin/settings
-[Mon May 18 05:36:18 2026] [::1]:59568 Closing
-[Mon May 18 05:36:18 2026] [::1]:59570 Accepted
-[Mon May 18 05:36:18 2026] [::1]:59570 [200]: GET /index.php?url=admin/settings
-[Mon May 18 05:36:18 2026] [::1]:59570 Closing
-[Mon May 18 05:36:18 2026] [::1]:59578 Accepted
-[Mon May 18 05:36:18 2026] [::1]:59580 Accepted
-[Mon May 18 05:36:18 2026] [::1]:59578 [200]: GET /css/style.css
-[Mon May 18 05:36:18 2026] [::1]:59580 [200]: GET /js/main.js
-[Mon May 18 05:36:18 2026] [::1]:59578 Closing
-[Mon May 18 05:36:18 2026] [::1]:59580 Closing
-[Mon May 18 05:36:20 2026] [::1]:53026 Accepted
-[Mon May 18 05:36:20 2026] [::1]:53026 [200]: GET /index.php?url=admin/auditLogs
-[Mon May 18 05:36:20 2026] [::1]:53026 Closing
-[Mon May 18 05:36:20 2026] [::1]:53042 Accepted
-[Mon May 18 05:36:20 2026] [::1]:53042 [200]: GET /css/style.css
-[Mon May 18 05:36:20 2026] [::1]:53042 Closing
-[Mon May 18 05:36:20 2026] [::1]:53052 Accepted
-[Mon May 18 05:36:20 2026] [::1]:53052 [200]: GET /js/main.js
-[Mon May 18 05:36:20 2026] [::1]:53052 Closing
-[Mon May 18 05:36:23 2026] [::1]:53066 Accepted
-[Mon May 18 05:36:23 2026] [::1]:53066 [302]: GET /index.php?url=auth/logout
-[Mon May 18 05:36:23 2026] [::1]:53066 Closing
-[Mon May 18 05:36:23 2026] [::1]:53070 Accepted
-[Mon May 18 05:36:23 2026] [::1]:53070 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:36:23 2026] [::1]:53070 Closing
-[Mon May 18 05:36:23 2026] [::1]:53074 Accepted
-[Mon May 18 05:36:23 2026] [::1]:53076 Accepted
-[Mon May 18 05:36:23 2026] [::1]:53074 [200]: GET /css/style.css
-[Mon May 18 05:36:23 2026] [::1]:53074 Closing
-[Mon May 18 05:36:23 2026] [::1]:53076 [200]: GET /js/main.js
-[Mon May 18 05:36:23 2026] [::1]:53076 Closing
-[Mon May 18 05:36:24 2026] [::1]:53084 Accepted
-[Mon May 18 05:36:24 2026] [::1]:53084 [200]: GET /index.php?url=auth/login
-[Mon May 18 05:36:24 2026] [::1]:53084 Closing
-[Mon May 18 05:36:24 2026] [::1]:53096 Accepted
-[Mon May 18 05:36:24 2026] [::1]:53100 Accepted
-[Mon May 18 05:36:24 2026] [::1]:53096 [200]: GET /css/style.css
-[Mon May 18 05:36:24 2026] [::1]:53100 [200]: GET /js/main.js
-[Mon May 18 05:36:24 2026] [::1]:53096 Closing
-[Mon May 18 05:36:24 2026] [::1]:53100 Closing
-[Mon May 18 05:36:25 2026] [::1]:53114 Accepted
-[Mon May 18 05:36:25 2026] [::1]:53114 [302]: POST /index.php?url=auth/login
-[Mon May 18 05:36:25 2026] [::1]:53114 Closing
-[Mon May 18 05:36:25 2026] [::1]:53124 Accepted
-[Mon May 18 05:36:25 2026] [::1]:53124 [200]: GET /index.php?url=client/index
-[Mon May 18 05:36:25 2026] [::1]:53124 Closing
-[Mon May 18 05:36:25 2026] [::1]:53132 Accepted
-[Mon May 18 05:36:25 2026] [::1]:53140 Accepted
-[Mon May 18 05:36:25 2026] [::1]:53132 [200]: GET /css/style.css
-[Mon May 18 05:36:25 2026] [::1]:53140 [200]: GET /js/main.js
-[Mon May 18 05:36:25 2026] [::1]:53140 Closing
-[Mon May 18 05:36:25 2026] [::1]:53132 Closing
-[Mon May 18 05:36:28 2026] [::1]:53154 Accepted
-[Mon May 18 05:36:28 2026] [::1]:53154 [200]: GET /index.php?url=chat/getMessages
-[Mon May 18 05:36:28 2026] [::1]:53154 Closing
-[Mon May 18 05:36:30 2026] [::1]:33846 Accepted
-[Mon May 18 05:36:30 2026] [::1]:33846 [200]: POST /index.php?url=chat/sendMessage
-[Mon May 18 05:36:30 2026] [::1]:33846 Closing
-[Mon May 18 05:36:30 2026] [::1]:33860 Accepted
-[Mon May 18 05:36:30 2026] [::1]:33860 [200]: GET /index.php?url=chat/getMessages
-[Mon May 18 05:36:30 2026] [::1]:33860 Closing
-[Mon May 18 05:36:31 2026] [::1]:33874 Accepted
-[Mon May 18 05:36:31 2026] [::1]:33874 [200]: GET /index.php?url=chat/getMessages
-[Mon May 18 05:36:31 2026] [::1]:33874 Closing
+[Mon May 18 08:06:17 2026] PHP 8.3.6 Development Server (http://localhost:8000) started
+[Mon May 18 08:09:40 2026] [::1]:37312 Accepted
+[Mon May 18 08:09:40 2026] [::1]:37312 [200]: GET /index.php?url=pages/index
+[Mon May 18 08:09:40 2026] [::1]:37312 Closing
+[Mon May 18 08:09:40 2026] [::1]:37320 Accepted
+[Mon May 18 08:09:40 2026] [::1]:37328 Accepted
+[Mon May 18 08:09:40 2026] [::1]:37320 [200]: GET /css/style.css
+[Mon May 18 08:09:40 2026] [::1]:37328 [200]: GET /js/main.js
+[Mon May 18 08:09:40 2026] [::1]:37320 Closing
+[Mon May 18 08:09:40 2026] [::1]:37328 Closing
+[Mon May 18 08:09:45 2026] [::1]:37338 Accepted
+[Mon May 18 08:09:45 2026] [::1]:37338 [200]: GET /index.php?url=pages/services
+[Mon May 18 08:09:45 2026] [::1]:37338 Closing
+[Mon May 18 08:09:45 2026] [::1]:37346 Accepted
+[Mon May 18 08:09:45 2026] [::1]:37358 Accepted
+[Mon May 18 08:09:45 2026] [::1]:37346 [200]: GET /css/style.css
+[Mon May 18 08:09:45 2026] [::1]:37358 [200]: GET /js/main.js
+[Mon May 18 08:09:45 2026] [::1]:37346 Closing
+[Mon May 18 08:09:45 2026] [::1]:37358 Closing
+[Mon May 18 08:26:34 2026] [::1]:53274 Accepted
+[Mon May 18 08:26:34 2026] [::1]:53274 [200]: GET /index.php?url=pages/index
+[Mon May 18 08:26:34 2026] [::1]:53274 Closing
+[Mon May 18 08:26:34 2026] [::1]:53282 Accepted
+[Mon May 18 08:26:34 2026] [::1]:53284 Accepted
+[Mon May 18 08:26:34 2026] [::1]:53282 [200]: GET /css/style.css
+[Mon May 18 08:26:34 2026] [::1]:53284 [200]: GET /js/main.js
+[Mon May 18 08:26:34 2026] [::1]:53282 Closing
+[Mon May 18 08:26:34 2026] [::1]:53284 Closing
+[Mon May 18 08:26:39 2026] [::1]:43544 Accepted
+[Mon May 18 08:26:39 2026] [::1]:43544 [200]: GET /index.php?url=pages/services
+[Mon May 18 08:26:39 2026] [::1]:43544 Closing
+[Mon May 18 08:26:39 2026] [::1]:43556 Accepted
+[Mon May 18 08:26:39 2026] [::1]:43566 Accepted
+[Mon May 18 08:26:39 2026] [::1]:43556 [200]: GET /css/style.css
+[Mon May 18 08:26:39 2026] [::1]:43566 [200]: GET /js/main.js
+[Mon May 18 08:26:39 2026] [::1]:43556 Closing
+[Mon May 18 08:26:39 2026] [::1]:43566 Closing

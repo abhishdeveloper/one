@@ -18,7 +18,7 @@
                             <ul style="list-style: none;">
                                 <?php foreach($data['clients'] as $c): ?>
                                     <li style="margin-bottom: 5px;">
-                                        <button class="btn btn-outline client-select-btn" data-id="<?= $c->id; ?>" style="width: 100%; text-align: left; padding: 8px; border: none; background: var(--bg-dark); color: white;"><?= htmlspecialchars($c->name); ?></button>
+                                        <button class="btn btn-outline client-select-btn" data-id="<?= $c->id; ?>" style="width: 100%; text-align: left; padding: 8px; border: none; background: var(--bg-main); color: white;"><?= htmlspecialchars($c->name); ?></button>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -27,13 +27,13 @@
 
                     <!-- Chat Window -->
                     <div class="card" style="flex-grow: 1; display: flex; flex-direction: column; padding: 0;">
-                        <div id="activeChatHeader" style="padding: 15px; background: var(--bg-dark); border-bottom: 1px solid var(--border-color); font-weight: bold; border-radius: 8px 8px 0 0;">
+                        <div id="activeChatHeader" style="padding: 15px; background: var(--bg-main); border-bottom: 1px solid var(--border-color); font-weight: bold; border-radius: 8px 8px 0 0;">
                             Select a client to start chatting...
                         </div>
-                        <div id="adminChatMessages" style="flex-grow: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; background: var(--bg-card);">
+                        <div id="adminChatMessages" style="flex-grow: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; background: var(--bg-surface);">
                             <!-- Messages -->
                         </div>
-                        <div style="padding: 15px; background: var(--bg-dark); border-top: 1px solid var(--border-color); border-radius: 0 0 8px 8px;">
+                        <div style="padding: 15px; background: var(--bg-main); border-top: 1px solid var(--border-color); border-radius: 0 0 8px 8px;">
                             <form id="adminChatForm" style="display: flex; gap: 10px;">
                                 <input type="hidden" id="currentClientId" value="0">
                                 <input type="text" id="adminChatInput" style="flex-grow: 1;" class="form-control" placeholder="Type message..." disabled required autocomplete="off">
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.client-select-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.client-select-btn').forEach(b => b.style.borderLeft = 'none');
-            this.style.borderLeft = '3px solid var(--primary-color)';
+            this.style.borderLeft = '3px solid var(--accent-primary)';
 
             const clientId = this.getAttribute('data-id');
             const clientName = this.innerText;
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 data.forEach(m => {
                     const isMe = m.sender_id == myId;
                     const align = isMe ? 'flex-end' : 'flex-start';
-                    const bg = isMe ? 'var(--primary-color)' : '#334155';
+                    const bg = isMe ? 'var(--accent-primary)' : '#334155';
                     chatMessages.innerHTML += `
                         <div style="align-self: ${align}; background: ${bg}; padding: 8px 12px; border-radius: 8px; max-width: 80%; word-wrap: break-word;">
                             ${m.message}
