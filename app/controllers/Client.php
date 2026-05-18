@@ -52,54 +52,6 @@ class Client extends Controller {
     }
 
     public function buy() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
-                die('CSRF validation failed');
-            }
-
-            $serviceId = filter_input(INPUT_POST, 'service_id', FILTER_SANITIZE_NUMBER_INT);
-            $domain = filter_input(INPUT_POST, 'domain_name', FILTER_SANITIZE_STRING);
-
-            $this->db->query("SELECT * FROM services WHERE id = :id");
-            $this->db->bind(':id', $serviceId);
-            $serviceDef = $this->db->single();
-
-            if ($serviceDef) {
-                $price = 19.99;
-
-                $this->db->query("INSERT INTO client_services (user_id, service_id, domain_name, price) VALUES (:user_id, :service_id, :domain, :price)");
-                $this->db->bind(':user_id', $_SESSION['user_id']);
-                $this->db->bind(':service_id', $serviceId);
-                $this->db->bind(':domain', $domain);
-                $this->db->bind(':price', $price);
-                $this->db->execute();
-
-                $clientServiceId = $this->db->dbh->lastInsertId();
-
-                $this->db->query("INSERT INTO invoices (user_id, client_service_id, amount, due_date) VALUES (:user_id, :cs_id, :amount, DATE_ADD(NOW(), INTERVAL 7 DAY))");
-                $this->db->bind(':user_id', $_SESSION['user_id']);
-                $this->db->bind(':cs_id', $clientServiceId);
-                $this->db->bind(':amount', $price);
-                $this->db->execute();
-
-                // Send Email Notification
-                require_once '../core/Mail.php';
-                $mailer = new Mail();
-                $mailer->sendServicePurchaseEmail($_SESSION['user_email'], $_SESSION['user_name'], $serviceDef->title, $domain);
-
-                // Notify Admin (Assume ID 1 is primary admin for now)
-                $this->db->query("SELECT email, name FROM users WHERE role = 'admin' LIMIT 1");
-                $admin = $this->db->single();
-                if ($admin) {
-                    $mailer->sendServicePurchaseEmail($admin->email, $admin->name . ' (Admin Alert)', $serviceDef->title, $domain);
-                }
-
-                $_SESSION['flash_message'] = 'Service requested and invoice generated successfully.';
-                header('Location: ' . URLROOT . '/index.php?url=client/invoices');
-                return;
-            }
-        }
-
         $services = $this->contentModel->getServices();
         $data = [
             'settings' => $this->contentModel->getSettings(),
@@ -107,6 +59,68 @@ class Client extends Controller {
         ];
 
         $this->view('client/buy', $data);
+    }
+
+    public function checkout($id) {
+        $this->db->query("SELECT * FROM services WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $serviceDef = $this->db->single();
+
+        if (!$serviceDef) {
+            header('Location: ' . URLROOT . '/index.php?url=client/buy');
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+                die('CSRF validation failed');
+            }
+
+            $domain = filter_input(INPUT_POST, 'domain_name', FILTER_SANITIZE_STRING);
+            $price = $serviceDef->price; // Use DB dynamic price
+
+            $this->db->query("INSERT INTO client_services (user_id, service_id, domain_name, price, billing_cycle) VALUES (:user_id, :service_id, :domain, :price, :billing_cycle)");
+            $this->db->bind(':user_id', $_SESSION['user_id']);
+            $this->db->bind(':service_id', $serviceDef->id);
+            $this->db->bind(':domain', $domain);
+            $this->db->bind(':price', $price);
+            $this->db->bind(':billing_cycle', $serviceDef->billing_cycle);
+            $this->db->execute();
+
+            $clientServiceId = $this->db->dbh->lastInsertId();
+
+            $this->db->query("INSERT INTO invoices (user_id, client_service_id, amount, due_date) VALUES (:user_id, :cs_id, :amount, DATE_ADD(NOW(), INTERVAL 7 DAY))");
+            $this->db->bind(':user_id', $_SESSION['user_id']);
+            $this->db->bind(':cs_id', $clientServiceId);
+            $this->db->bind(':amount', $price);
+            $this->db->execute();
+
+            // Send Email Notification
+            require_once '../core/Mail.php';
+            $mailer = new Mail();
+            $mailer->sendServicePurchaseEmail($_SESSION['user_email'], $_SESSION['user_name'], $serviceDef->title, $domain);
+
+            // Notify Admin (Assume ID 1 is primary admin for now)
+            $this->db->query("SELECT email, name FROM users WHERE role = 'admin' LIMIT 1");
+            $admin = $this->db->single();
+            if ($admin) {
+                $mailer->sendServicePurchaseEmail($admin->email, $admin->name . ' (Admin Alert)', $serviceDef->title, $domain);
+            }
+
+            // Log Action
+            $this->model('UserModel')->logAction($_SESSION['user_id'], 'Purchased new service: ' . $serviceDef->title);
+
+            $_SESSION['flash_message'] = 'Service requested and invoice generated successfully.';
+            header('Location: ' . URLROOT . '/index.php?url=client/invoices');
+            return;
+        }
+
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'service' => $serviceDef
+        ];
+
+        $this->view('client/checkout', $data);
     }
 
     public function invoices() {
@@ -162,6 +176,7 @@ class Client extends Controller {
             $this->db->bind(':utr', $utrNumber);
 
             if ($this->db->execute()) {
+                $this->model('UserModel')->logAction($_SESSION['user_id'], 'Submitted UTR for Invoice #' . $id);
                 $_SESSION['flash_message'] = 'Payment reference submitted. Your payment is now pending manual verification by the admin.';
             } else {
                 $_SESSION['flash_message'] = 'Failed to submit payment reference.';
@@ -202,6 +217,8 @@ class Client extends Controller {
                 if ($admin) {
                     $mailer->sendNewTicketEmail($admin->email, $admin->name . ' (Admin Alert)', $ticketId, $subject);
                 }
+
+                $this->model('UserModel')->logAction($_SESSION['user_id'], 'Opened support ticket #' . $ticketId);
 
                 $_SESSION['flash_message'] = 'Ticket generated successfully.';
                 header('Location: ' . URLROOT . '/index.php?url=client/tickets');

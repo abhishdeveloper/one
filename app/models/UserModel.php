@@ -85,4 +85,14 @@ class UserModel {
 
         return $this->db->single();
     }
+
+    // Log Client Action
+    public function logAction($userId, $action) {
+        $ip = Security::getClientIp();
+        $this->db->query('INSERT INTO client_logs (user_id, action, ip_address) VALUES (:user_id, :action, :ip_address)');
+        $this->db->bind(':user_id', $userId);
+        $this->db->bind(':action', $action);
+        $this->db->bind(':ip_address', $ip);
+        $this->db->execute();
+    }
 }

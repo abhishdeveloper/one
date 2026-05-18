@@ -10,6 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <?php if (isset($data['settings']['announcement_active']) && $data['settings']['announcement_active'] == '1' && !empty($data['settings']['announcement_text'])): ?>
+    <div style="background-color: var(--primary-color); color: white; text-align: center; padding: 10px; font-size: 0.95rem; font-weight: 500;">
+        <?= htmlspecialchars($data['settings']['announcement_text']); ?>
+    </div>
+    <?php endif; ?>
+
     <header class="navbar">
         <div class="container nav-container">
             <a href="<?= URLROOT; ?>" class="brand"><?= $data['settings']['site_name'] ?? SITENAME; ?></a>

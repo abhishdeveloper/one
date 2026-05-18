@@ -34,8 +34,26 @@
                                     <?php endif; ?>
                                 </div>
 
+                                <?php
+                                    // Calculate simple progress bar logic based on status
+                                    $progress = 0;
+                                    $progColor = '#ef4444';
+                                    if ($service->status == 'pending') { $progress = 30; $progColor = '#f59e0b'; }
+                                    if ($service->status == 'active') { $progress = 100; $progColor = '#10b981'; }
+                                    if ($service->status == 'suspended' || $service->status == 'cancelled') { $progress = 100; }
+                                ?>
+                                <div style="margin-top: 15px; margin-bottom: 15px;">
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 5px; color: var(--text-muted);">
+                                        <span>Order Status Progress</span>
+                                        <span><?= $progress; ?>%</span>
+                                    </div>
+                                    <div style="width: 100%; background-color: var(--bg-dark); border-radius: 4px; height: 8px; overflow: hidden;">
+                                        <div style="width: <?= $progress; ?>%; background-color: <?= $progColor; ?>; height: 100%;"></div>
+                                    </div>
+                                </div>
+
                                 <?php if($service->status == 'active'): ?>
-                                    <div style="margin-top: 15px;">
+                                    <div style="margin-top: auto;">
                                         <a href="<?= URLROOT; ?>/index.php?url=client/tickets" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem;">Get Support</a>
                                     </div>
                                 <?php endif; ?>

@@ -50,6 +50,26 @@ class Admin extends Controller {
         $this->view('admin/users', $data);
     }
 
+    public function chat() {
+        $this->db->query("SELECT id, name, email FROM users WHERE role = 'client' ORDER BY name ASC");
+        $clients = $this->db->resultSet();
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'clients' => $clients
+        ];
+        $this->view('admin/chat', $data);
+    }
+
+    public function auditLogs() {
+        $this->db->query("SELECT cl.*, u.name, u.email FROM client_logs cl JOIN users u ON cl.user_id = u.id ORDER BY cl.created_at DESC");
+        $logs = $this->db->resultSet();
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'logs' => $logs
+        ];
+        $this->view('admin/audit_logs', $data);
+    }
+
     public function settings() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verify CSRF
@@ -70,7 +90,7 @@ class Admin extends Controller {
             $this->db->execute();
 
             // Settings loops
-            $updateSettings = ['smtp_host', 'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_from_email', 'smtp_from_name', 'upi_id'];
+            $updateSettings = ['smtp_host', 'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_from_email', 'smtp_from_name', 'upi_id', 'announcement_active', 'announcement_text'];
             foreach ($updateSettings as $key) {
                 if (isset($_POST[$key])) {
                     $val = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
@@ -117,6 +137,105 @@ class Admin extends Controller {
         } else {
             header('Location: ' . URLROOT . '/index.php?url=admin/users');
         }
+    }
+
+    public function services() {
+        $services = $this->contentModel->getServices();
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'services' => $services
+        ];
+        $this->view('admin/services', $data);
+    }
+
+    public function addService() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+                die('CSRF validation failed');
+            }
+
+            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+            $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+            $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $billing_cycle = filter_input(INPUT_POST, 'billing_cycle', FILTER_SANITIZE_STRING);
+            $features = filter_input(INPUT_POST, 'features', FILTER_SANITIZE_STRING);
+            $sort_order = filter_input(INPUT_POST, 'sort_order', FILTER_SANITIZE_NUMBER_INT);
+
+            $this->db->query("INSERT INTO services (title, category, description, price, billing_cycle, features, sort_order) VALUES (:title, :category, :description, :price, :billing_cycle, :features, :sort_order)");
+            $this->db->bind(':title', $title);
+            $this->db->bind(':category', $category);
+            $this->db->bind(':description', $description);
+            $this->db->bind(':price', $price);
+            $this->db->bind(':billing_cycle', $billing_cycle);
+            $this->db->bind(':features', $features);
+            $this->db->bind(':sort_order', $sort_order);
+
+            if ($this->db->execute()) {
+                $_SESSION['flash_message'] = 'Service added successfully.';
+                header('Location: ' . URLROOT . '/index.php?url=admin/services');
+                return;
+            }
+        }
+        $data = ['settings' => $this->contentModel->getSettings()];
+        $this->view('admin/service_form', $data);
+    }
+
+    public function editService($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+                die('CSRF validation failed');
+            }
+
+            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+            $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+            $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $billing_cycle = filter_input(INPUT_POST, 'billing_cycle', FILTER_SANITIZE_STRING);
+            $features = filter_input(INPUT_POST, 'features', FILTER_SANITIZE_STRING);
+            $sort_order = filter_input(INPUT_POST, 'sort_order', FILTER_SANITIZE_NUMBER_INT);
+
+            $this->db->query("UPDATE services SET title=:title, category=:category, description=:description, price=:price, billing_cycle=:billing_cycle, features=:features, sort_order=:sort_order WHERE id=:id");
+            $this->db->bind(':id', $id);
+            $this->db->bind(':title', $title);
+            $this->db->bind(':category', $category);
+            $this->db->bind(':description', $description);
+            $this->db->bind(':price', $price);
+            $this->db->bind(':billing_cycle', $billing_cycle);
+            $this->db->bind(':features', $features);
+            $this->db->bind(':sort_order', $sort_order);
+
+            if ($this->db->execute()) {
+                $_SESSION['flash_message'] = 'Service updated successfully.';
+                header('Location: ' . URLROOT . '/index.php?url=admin/services');
+                return;
+            }
+        }
+
+        $this->db->query("SELECT * FROM services WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $service = $this->db->single();
+
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'service' => $service
+        ];
+        $this->view('admin/service_form', $data);
+    }
+
+    public function deleteService($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+                die('CSRF validation failed');
+            }
+            $this->db->query("DELETE FROM services WHERE id = :id");
+            $this->db->bind(':id', $id);
+            if ($this->db->execute()) {
+                $_SESSION['flash_message'] = 'Service deleted successfully';
+            }
+        }
+        header('Location: ' . URLROOT . '/index.php?url=admin/services');
+        return;
     }
 
     public function invoices() {

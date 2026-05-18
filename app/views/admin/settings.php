@@ -86,6 +86,24 @@
                         </div>
                     </div>
 
+                    <div class="card" style="margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Global Announcement</h3>
+                        <p style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.9rem;">Display a floating banner/notice to all site visitors and clients.</p>
+
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select name="announcement_active" class="form-control">
+                                <option value="0" <?= (isset($data['settings']['announcement_active']) && $data['settings']['announcement_active'] == '0') ? 'selected' : ''; ?>>Disabled</option>
+                                <option value="1" <?= (isset($data['settings']['announcement_active']) && $data['settings']['announcement_active'] == '1') ? 'selected' : ''; ?>>Active (Visible)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Announcement Text / Notice</label>
+                            <textarea name="announcement_text" class="form-control" rows="2"><?= htmlspecialchars($data['settings']['announcement_text'] ?? ''); ?></textarea>
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Save All Settings</button>
                 </form>
             </div>

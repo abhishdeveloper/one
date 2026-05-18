@@ -1,0 +1,12 @@
+<div class="card" style="width: 250px; flex-shrink: 0; align-self: flex-start;">
+    <h3 style="margin-bottom: 20px;">Admin Menu</h3>
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/index" style="display: block; padding: 10px; background: <?= $current == 'index' ? 'var(--primary-color)' : 'var(--bg-dark)'; ?>; color: <?= $current == 'index' ? 'white' : 'inherit'; ?>; border-radius: 4px;">Dashboard</a></li>
+        <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/users" style="display: block; padding: 10px; background: <?= $current == 'users' ? 'var(--primary-color)' : 'var(--bg-dark)'; ?>; color: <?= $current == 'users' ? 'white' : 'inherit'; ?>; border-radius: 4px;">Manage Users</a></li>
+        <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/invoices" style="display: block; padding: 10px; background: <?= $current == 'invoices' ? 'var(--primary-color)' : 'var(--bg-dark)'; ?>; color: <?= $current == 'invoices' ? 'white' : 'inherit'; ?>; border-radius: 4px;">Manage Invoices</a></li>
+        <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/services" style="display: block; padding: 10px; background: <?= $current == 'services' ? 'var(--primary-color)' : 'var(--bg-dark)'; ?>; color: <?= $current == 'services' ? 'white' : 'inherit'; ?>; border-radius: 4px;">Manage Services</a></li>
+        <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/chat" style="display: block; padding: 10px; background: <?= $current == 'chat' ? 'var(--primary-color)' : 'var(--bg-dark)'; ?>; color: <?= $current == 'chat' ? 'white' : 'inherit'; ?>; border-radius: 4px;">Client Chat Center</a></li>
+        <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/auditLogs" style="display: block; padding: 10px; background: <?= $current == 'audit_logs' ? 'var(--primary-color)' : 'var(--bg-dark)'; ?>; color: <?= $current == 'audit_logs' ? 'white' : 'inherit'; ?>; border-radius: 4px;">Client Logbook</a></li>
+        <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/settings" style="display: block; padding: 10px; background: <?= $current == 'settings' ? 'var(--primary-color)' : 'var(--bg-dark)'; ?>; color: <?= $current == 'settings' ? 'white' : 'inherit'; ?>; border-radius: 4px;">Site Settings</a></li>
+    </ul>
+</div>

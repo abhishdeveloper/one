@@ -244,6 +244,7 @@ class Auth extends Controller {
         if ($user->role == 'admin') {
             header('Location: ' . URLROOT . '/index.php?url=admin/index');
         } else {
+            $this->userModel->logAction($user->id, 'User logged in.');
             header('Location: ' . URLROOT . '/index.php?url=client/index');
         }
         return;

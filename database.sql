@@ -202,3 +202,34 @@ INSERT IGNORE INTO settings (setting_key, setting_value, description) VALUES
 
 ALTER TABLE invoices ADD COLUMN utr_number VARCHAR(100) DEFAULT NULL AFTER payment_method;
 ALTER TABLE invoices MODIFY COLUMN status ENUM('unpaid', 'pending_verification', 'paid', 'cancelled') DEFAULT 'unpaid';
+ALTER TABLE services ADD COLUMN price DECIMAL(10, 2) NOT NULL DEFAULT 0 AFTER description;
+ALTER TABLE services ADD COLUMN billing_cycle ENUM('monthly', 'yearly', 'one-time') DEFAULT 'monthly' AFTER price;
+ALTER TABLE services ADD COLUMN category VARCHAR(100) NOT NULL DEFAULT 'Web Development' AFTER title;
+USE shared_hosting;
+
+-- Audit Logs Table
+CREATE TABLE IF NOT EXISTS client_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    action VARCHAR(255) NOT NULL,
+    ip_address VARCHAR(45) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Chat Messages Table
+CREATE TABLE IF NOT EXISTS chat_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    message TEXT NOT NULL,
+    is_read TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Global Announcement
+INSERT IGNORE INTO settings (setting_key, setting_value, description) VALUES
+('announcement_text', '', 'Global Announcement/Notice for Clients'),
+('announcement_active', '0', 'Enable/Disable Global Announcement (1 or 0)');

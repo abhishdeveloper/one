@@ -6,42 +6,41 @@
             <?php $current = 'buy'; include 'sidebar.php'; ?>
 
             <div style="flex-grow: 1;">
-                <h2 style="margin-bottom: 20px;">Order New Service</h2>
+                <h2 style="margin-bottom: 20px;">Available Services</h2>
 
-                <div class="card">
-                    <form action="<?= URLROOT; ?>/index.php?url=client/buy" method="post">
-                        <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
+                <?php
+                // Group services by category
+                $groupedServices = [];
+                foreach($data['available_services'] as $s) {
+                    $groupedServices[$s->category][] = $s;
+                }
+                ?>
 
-                        <div class="form-group">
-                            <label>Select Service</label>
-                            <select name="service_id" class="form-control" required style="cursor: pointer;">
-                                <option value="">-- Choose a Service --</option>
-                                <?php foreach($data['available_services'] as $s): ?>
-                                    <option value="<?= $s->id; ?>"><?= htmlspecialchars($s->title); ?> - $19.99/mo</option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                <?php foreach($groupedServices as $category => $services): ?>
+                    <h3 style="margin-top: 30px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--border-color); color: var(--primary-color);"><?= htmlspecialchars($category); ?></h3>
+                    <div class="grid-2">
+                        <?php foreach($services as $service): ?>
+                            <div class="card" style="display: flex; flex-direction: column;">
+                                <h4 style="font-size: 1.2rem; margin-bottom: 10px;"><?= htmlspecialchars($service->title); ?></h4>
+                                <div style="font-size: 1.8rem; font-weight: bold; color: white; margin-bottom: 15px;">
+                                    ₹<?= number_format($service->price, 0); ?>
+                                    <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">/ <?= $service->billing_cycle; ?></span>
+                                </div>
+                                <p style="color: var(--text-muted); margin-bottom: 15px; flex-grow: 1;"><?= htmlspecialchars($service->description); ?></p>
 
-                        <div class="form-group">
-                            <label>Domain Name / Project Name</label>
-                            <input type="text" name="domain_name" class="form-control" placeholder="e.g. mycompany.com" required>
-                        </div>
+                                <ul class="feature-list" style="margin-bottom: 20px;">
+                                    <?php
+                                    $features = explode(',', $service->features);
+                                    foreach ($features as $feature) : ?>
+                                        <li><?= htmlspecialchars(trim($feature)); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
 
-                        <div style="background: var(--bg-dark); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                            <h4 style="margin-bottom: 10px;">Order Summary</h4>
-                            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px;">
-                                <span>Setup Fee</span>
-                                <span>$0.00</span>
+                                <a href="<?= URLROOT; ?>/index.php?url=client/checkout/<?= $service->id; ?>" class="btn btn-primary text-center" style="width: 100%; margin-top: auto;">Order Now</a>
                             </div>
-                            <div style="display: flex; justify-content: space-between; font-weight: bold;">
-                                <span>Total Due Today</span>
-                                <span>$19.99</span>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Place Order & Generate Invoice</button>
-                    </form>
-                </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
