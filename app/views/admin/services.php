@@ -8,7 +8,7 @@
             <div style="flex-grow: 1;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h2>Manage Services</h2>
-                    <a href="<?= URLROOT; ?>/index.php?url=admin/addService" class="btn btn-primary">+ Add New Service</a>
+                    <a href="<?= URLROOT; ?>/admin/addService" class="btn btn-primary">+ Add New Service</a>
                 </div>
 
                 <?php if(isset($_SESSION['flash_message'])): ?>
@@ -38,8 +38,8 @@
                                     <td style="padding: 12px;">₹<?= number_format($service->price, 2); ?> <small style="color: var(--text-muted);">/ <?= $service->billing_cycle; ?></small></td>
                                     <td style="padding: 12px;">
                                         <div style="display: flex; gap: 5px;">
-                                            <a href="<?= URLROOT; ?>/index.php?url=admin/editService/<?= $service->id; ?>" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem;">Edit</a>
-                                            <form action="<?= URLROOT; ?>/index.php?url=admin/deleteService/<?= $service->id; ?>" method="post" onsubmit="return confirm('Delete this service permanently?');">
+                                            <a href="<?= URLROOT; ?>/admin/editService/<?= $service->id; ?>" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem;">Edit</a>
+                                            <form action="<?= URLROOT; ?>/admin/deleteService/<?= $service->id; ?>" method="post" onsubmit="return confirm('Delete this service permanently?');">
                                                 <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
                                                 <button type="submit" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem; color: #ef4444; border-color: #ef4444;">Delete</button>
                                             </form>

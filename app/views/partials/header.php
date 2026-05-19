@@ -21,20 +21,20 @@
             <a href="<?= URLROOT; ?>" class="brand"><?= $data['settings']['site_name'] ?? SITENAME; ?></a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="<?= URLROOT; ?>/index.php?url=pages/index">Home</a></li>
-                    <li><a href="<?= URLROOT; ?>/index.php?url=pages/services">Services</a></li>
-                    <li><a href="<?= URLROOT; ?>/index.php?url=pages/projects">Projects</a></li>
-                    <li><a href="<?= URLROOT; ?>/index.php?url=pages/about">About</a></li>
-                    <li><a href="<?= URLROOT; ?>/index.php?url=pages/contact">Contact</a></li>
+                    <li><a href="<?= URLROOT; ?>/pages/index">Home</a></li>
+                    <li><a href="<?= URLROOT; ?>/pages/services">Services</a></li>
+                    <li><a href="<?= URLROOT; ?>/pages/projects">Projects</a></li>
+                    <li><a href="<?= URLROOT; ?>/pages/about">About</a></li>
+                    <li><a href="<?= URLROOT; ?>/pages/contact">Contact</a></li>
                 </ul>
             </nav>
             <div class="auth-links" style="margin-left: 20px;">
                 <?php if(isset($_SESSION['user_id'])): ?>
-                    <a href="<?= URLROOT; ?>/index.php?url=<?= $_SESSION['user_role'] == 'admin' ? 'admin' : 'client'; ?>/index" class="btn btn-outline" style="padding: 8px 16px;">Dashboard</a>
-                    <a href="<?= URLROOT; ?>/index.php?url=auth/logout" class="btn btn-primary" style="padding: 8px 16px; margin-left: 10px;">Logout</a>
+                    <a href="<?= URLROOT; ?>/<?= $_SESSION['user_role'] == 'admin' ? 'admin' : 'client'; ?>/index" class="btn btn-outline" style="padding: 8px 16px;">Dashboard</a>
+                    <a href="<?= URLROOT; ?>/auth/logout" class="btn btn-primary" style="padding: 8px 16px; margin-left: 10px;">Logout</a>
                 <?php else: ?>
-                    <a href="<?= URLROOT; ?>/index.php?url=auth/login" class="btn btn-outline" style="padding: 8px 16px;">Login</a>
-                    <a href="<?= URLROOT; ?>/index.php?url=auth/register" class="btn btn-primary" style="padding: 8px 16px; margin-left: 10px;">Sign Up</a>
+                    <a href="<?= URLROOT; ?>/auth/login" class="btn btn-outline" style="padding: 8px 16px;">Login</a>
+                    <a href="<?= URLROOT; ?>/auth/register" class="btn btn-primary" style="padding: 8px 16px; margin-left: 10px;">Sign Up</a>
                 <?php endif; ?>
 
                 <!-- Theme Toggle -->

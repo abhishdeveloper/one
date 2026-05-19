@@ -6,9 +6,9 @@
             <div class="card" style="width: 250px; flex-shrink: 0; align-self: flex-start;">
                 <h3 style="margin-bottom: 20px;">Admin Menu</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/users" style="display: block; padding: 10px; background: var(--accent-primary); color: white; border-radius: 4px;">Manage Users</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/settings" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Site Settings</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/users" style="display: block; padding: 10px; background: var(--accent-primary); color: white; border-radius: 4px;">Manage Users</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/settings" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Site Settings</a></li>
                 </ul>
             </div>
 
@@ -46,7 +46,7 @@
                                     <td style="padding: 12px;"><?= ucfirst($user->status); ?></td>
                                     <td style="padding: 12px;">
                                         <?php if ($user->id != $_SESSION['user_id']): ?>
-                                            <form action="<?= URLROOT; ?>/index.php?url=admin/deleteUser/<?= $user->id; ?>" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                            <form action="<?= URLROOT; ?>/admin/deleteUser/<?= $user->id; ?>" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
                                                 <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
                                                 <button type="submit" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem; color: #ef4444; border-color: #ef4444;">Delete</button>
                                             </form>

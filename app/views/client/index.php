@@ -8,7 +8,7 @@
             <div style="flex-grow: 1;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h2>Welcome, <?= htmlspecialchars($_SESSION['user_name']); ?></h2>
-                    <a href="<?= URLROOT; ?>/index.php?url=client/buy" class="btn btn-primary">+ New Service</a>
+                    <a href="<?= URLROOT; ?>/client/buy" class="btn btn-primary">+ New Service</a>
                 </div>
 
                 <div class="grid-2" style="margin-bottom: 30px;">
@@ -17,14 +17,14 @@
                         <p style="font-size: 2.5rem; color: var(--accent-primary); font-weight: bold; margin-top: 10px;">
                             <?= count(array_filter($data['services'], fn($s) => $s->status == 'active')); ?>
                         </p>
-                        <a href="<?= URLROOT; ?>/index.php?url=client/services" style="display: inline-block; margin-top: 10px;">View All Services →</a>
+                        <a href="<?= URLROOT; ?>/client/services" style="display: inline-block; margin-top: 10px;">View All Services →</a>
                     </div>
                     <div class="card">
                         <h3>Unpaid Invoices</h3>
                         <p style="font-size: 2.5rem; color: #ef4444; font-weight: bold; margin-top: 10px;">
                             $<?= number_format($data['totalDue'], 2); ?>
                         </p>
-                        <a href="<?= URLROOT; ?>/index.php?url=client/invoices" style="display: inline-block; margin-top: 10px;">Pay Now →</a>
+                        <a href="<?= URLROOT; ?>/client/invoices" style="display: inline-block; margin-top: 10px;">Pay Now →</a>
                     </div>
                 </div>
 

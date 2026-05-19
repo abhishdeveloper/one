@@ -12,7 +12,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="<?= URLROOT; ?>/index.php?url=auth/login" method="post">
+            <form action="<?= URLROOT; ?>/auth/login" method="post">
                 <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
 
                 <div class="form-group">

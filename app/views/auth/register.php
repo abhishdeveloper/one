@@ -5,7 +5,7 @@
         <div class="card">
             <h2 class="text-center" style="margin-bottom: 20px;">Create an Account</h2>
 
-            <form action="<?= URLROOT; ?>/index.php?url=auth/register" method="post">
+            <form action="<?= URLROOT; ?>/auth/register" method="post">
                 <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
 
                 <div class="form-group">

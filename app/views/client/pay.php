@@ -52,7 +52,7 @@
                             <p><strong>Amount:</strong> ₹<?= number_format($data['invoice']->amount, 2); ?></p>
                         </div>
 
-                        <form action="<?= URLROOT; ?>/index.php?url=client/submitUtr/<?= $data['invoice']->id; ?>" method="post">
+                        <form action="<?= URLROOT; ?>/client/submitUtr/<?= $data['invoice']->id; ?>" method="post">
                             <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
 
                             <div class="form-group">

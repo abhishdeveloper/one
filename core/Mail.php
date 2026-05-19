@@ -98,10 +98,10 @@ class Mail {
             <p>Hi {$name},</p>
             <p>Welcome to {$siteName}! Your account has been successfully created.</p>
             <p>You can now log in to your dashboard to purchase new services and manage your hosting infrastructure.</p>
-            <center><a href='" . URLROOT . "/index.php?url=auth/login' class='btn'>Go to Dashboard</a></center>
+            <center><a href='" . URLROOT . "/auth/login' class='btn'>Go to Dashboard</a></center>
         ";
 
-        $plainTextContent = "Hi {$name},\n\nWelcome to {$siteName}! Your account has been successfully created.\nYou can now log in to your dashboard at " . URLROOT . "/index.php?url=auth/login";
+        $plainTextContent = "Hi {$name},\n\nWelcome to {$siteName}! Your account has been successfully created.\nYou can now log in to your dashboard at " . URLROOT . "/auth/login";
 
         return $this->send($to, $subject, $this->getBaseTemplate('Welcome Aboard', $htmlContent), $plainTextContent);
     }
@@ -114,10 +114,10 @@ class Mail {
             <p>Hi {$name},</p>
             <p>We have received your request for <strong>{$serviceName}</strong> (Domain/Target: {$domain}).</p>
             <p>An invoice has been generated in your dashboard. Once payment is received, your service will be automatically activated.</p>
-            <center><a href='" . URLROOT . "/index.php?url=client/invoices' class='btn'>View Invoices</a></center>
+            <center><a href='" . URLROOT . "/client/invoices' class='btn'>View Invoices</a></center>
         ";
 
-        $plainTextContent = "Hi {$name},\n\nWe have received your request for {$serviceName} ({$domain}).\nAn invoice has been generated in your dashboard. Once payment is received, your service will be automatically activated.\nView invoices: " . URLROOT . "/index.php?url=client/invoices";
+        $plainTextContent = "Hi {$name},\n\nWe have received your request for {$serviceName} ({$domain}).\nAn invoice has been generated in your dashboard. Once payment is received, your service will be automatically activated.\nView invoices: " . URLROOT . "/client/invoices";
 
         return $this->send($to, $subject, $this->getBaseTemplate('Service Requested', $htmlContent), $plainTextContent);
     }
@@ -131,10 +131,10 @@ class Mail {
             <p>A new support ticket has been created on your account.</p>
             <p><strong>Subject:</strong> {$subjectLine}</p>
             <p>Our team will review your request and respond shortly. You can track the status of this ticket in your dashboard.</p>
-            <center><a href='" . URLROOT . "/index.php?url=client/tickets' class='btn'>View Tickets</a></center>
+            <center><a href='" . URLROOT . "/client/tickets' class='btn'>View Tickets</a></center>
         ";
 
-        $plainTextContent = "Hi {$name},\n\nA new support ticket has been created on your account.\nSubject: {$subjectLine}\nOur team will review your request and respond shortly.\nView tickets: " . URLROOT . "/index.php?url=client/tickets";
+        $plainTextContent = "Hi {$name},\n\nA new support ticket has been created on your account.\nSubject: {$subjectLine}\nOur team will review your request and respond shortly.\nView tickets: " . URLROOT . "/client/tickets";
 
         return $this->send($to, $subject, $this->getBaseTemplate('Support Ticket Created', $htmlContent), $plainTextContent);
     }

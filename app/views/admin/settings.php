@@ -6,9 +6,9 @@
             <div class="card" style="width: 250px; flex-shrink: 0; align-self: flex-start;">
                 <h3 style="margin-bottom: 20px;">Admin Menu</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/users" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Manage Users</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/settings" style="display: block; padding: 10px; background: var(--accent-primary); color: white; border-radius: 4px;">Site Settings</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/users" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Manage Users</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/settings" style="display: block; padding: 10px; background: var(--accent-primary); color: white; border-radius: 4px;">Site Settings</a></li>
                 </ul>
             </div>
 
@@ -22,7 +22,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="<?= URLROOT; ?>/index.php?url=admin/settings" method="post">
+                <form action="<?= URLROOT; ?>/admin/settings" method="post">
                     <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
 
                     <div class="card" style="margin-bottom: 20px;">

@@ -36,7 +36,7 @@
                                     <?php endforeach; ?>
                                 </ul>
 
-                                <a href="<?= URLROOT; ?>/index.php?url=client/checkout/<?= $service->id; ?>" class="btn btn-primary text-center" style="width: 100%; margin-top: auto;">Order Now</a>
+                                <a href="<?= URLROOT; ?>/client/checkout/<?= $service->id; ?>" class="btn btn-primary text-center" style="width: 100%; margin-top: auto;">Order Now</a>
                             </div>
                         <?php endforeach; ?>
                     </div>

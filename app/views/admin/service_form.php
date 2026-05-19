@@ -8,11 +8,11 @@
             <div style="flex-grow: 1;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h2><?= isset($data['service']) ? 'Edit Service' : 'Add New Service'; ?></h2>
-                    <a href="<?= URLROOT; ?>/index.php?url=admin/services" class="btn btn-secondary">Back to Services</a>
+                    <a href="<?= URLROOT; ?>/admin/services" class="btn btn-secondary">Back to Services</a>
                 </div>
 
                 <div class="card">
-                    <form action="<?= URLROOT; ?>/index.php?url=admin/<?= isset($data['service']) ? 'editService/'.$data['service']->id : 'addService'; ?>" method="post">
+                    <form action="<?= URLROOT; ?>/admin/<?= isset($data['service']) ? 'editService/'.$data['service']->id : 'addService'; ?>" method="post">
                         <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
 
                         <div class="form-group">

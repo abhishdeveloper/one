@@ -65,7 +65,7 @@ class Auth extends Controller {
                     $mailer->sendWelcomeEmail($data['email'], $data['name']);
 
                     $_SESSION['flash_message'] = 'Registration successful! You can now log in.';
-                    header('Location: ' . URLROOT . '/index.php?url=auth/login');
+                    header('Location: ' . URLROOT . '/auth/login');
                     return;
                 } else {
                     die('Something went wrong');
@@ -169,7 +169,7 @@ class Auth extends Controller {
 
     public function googleCallback() {
         if (!isset($_GET['code'])) {
-            header('Location: ' . URLROOT . '/index.php?url=auth/login');
+            header('Location: ' . URLROOT . '/auth/login');
             return;
         }
 
@@ -242,10 +242,10 @@ class Auth extends Controller {
         $_SESSION['user_role'] = $user->role;
 
         if ($user->role == 'admin') {
-            header('Location: ' . URLROOT . '/index.php?url=admin/index');
+            header('Location: ' . URLROOT . '/admin/index');
         } else {
             $this->userModel->logAction($user->id, 'User logged in.');
-            header('Location: ' . URLROOT . '/index.php?url=client/index');
+            header('Location: ' . URLROOT . '/client/index');
         }
         return;
     }
@@ -256,7 +256,7 @@ class Auth extends Controller {
         unset($_SESSION['user_name']);
         unset($_SESSION['user_role']);
         session_destroy();
-        header('Location: ' . URLROOT . '/index.php?url=auth/login');
+        header('Location: ' . URLROOT . '/auth/login');
         return;
     }
 }

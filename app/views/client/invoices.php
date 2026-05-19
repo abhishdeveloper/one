@@ -47,7 +47,7 @@
                                         </td>
                                         <td style="padding: 12px;">
                                             <?php if($inv->status == 'unpaid'): ?>
-                                                <a href="<?= URLROOT; ?>/index.php?url=client/pay/<?= $inv->id; ?>" class="btn btn-primary" style="padding: 4px 12px; font-size: 0.85rem;" onclick="return confirm('Simulate paying this invoice?');">Pay Now</a>
+                                                <a href="<?= URLROOT; ?>/client/pay/<?= $inv->id; ?>" class="btn btn-primary" style="padding: 4px 12px; font-size: 0.85rem;" onclick="return confirm('Simulate paying this invoice?');">Pay Now</a>
                                             <?php else: ?>
                                                 <span style="color: var(--text-muted); font-size: 0.85rem;">Paid on <?= date('M d', strtotime($inv->paid_date)); ?></span>
                                             <?php endif; ?>

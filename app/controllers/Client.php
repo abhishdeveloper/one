@@ -8,7 +8,7 @@ class Client extends Controller {
 
         // Ensure user is logged in
         if (!isset($_SESSION['user_id'])) {
-            header('Location: ' . URLROOT . '/index.php?url=auth/login');
+            header('Location: ' . URLROOT . '/auth/login');
             return;
         }
 
@@ -67,7 +67,7 @@ class Client extends Controller {
         $serviceDef = $this->db->single();
 
         if (!$serviceDef) {
-            header('Location: ' . URLROOT . '/index.php?url=client/buy');
+            header('Location: ' . URLROOT . '/client/buy');
             return;
         }
 
@@ -111,7 +111,7 @@ class Client extends Controller {
             $this->model('UserModel')->logAction($_SESSION['user_id'], 'Purchased new service: ' . $serviceDef->title);
 
             $_SESSION['flash_message'] = 'Service requested and invoice generated successfully.';
-            header('Location: ' . URLROOT . '/index.php?url=client/invoices');
+            header('Location: ' . URLROOT . '/client/invoices');
             return;
         }
 
@@ -144,7 +144,7 @@ class Client extends Controller {
         $invoice = $this->db->single();
 
         if (!$invoice) {
-            header('Location: ' . URLROOT . '/index.php?url=client/invoices');
+            header('Location: ' . URLROOT . '/client/invoices');
             return;
         }
 
@@ -166,7 +166,7 @@ class Client extends Controller {
 
             if (empty($utrNumber)) {
                 $_SESSION['flash_message'] = 'Please enter your Transaction / UTR Number.';
-                header('Location: ' . URLROOT . '/index.php?url=client/pay/' . $id);
+                header('Location: ' . URLROOT . '/client/pay/' . $id);
                 return;
             }
 
@@ -182,7 +182,7 @@ class Client extends Controller {
                 $_SESSION['flash_message'] = 'Failed to submit payment reference.';
             }
 
-            header('Location: ' . URLROOT . '/index.php?url=client/invoices');
+            header('Location: ' . URLROOT . '/client/invoices');
             return;
         }
     }
@@ -221,7 +221,7 @@ class Client extends Controller {
                 $this->model('UserModel')->logAction($_SESSION['user_id'], 'Opened support ticket #' . $ticketId);
 
                 $_SESSION['flash_message'] = 'Ticket generated successfully.';
-                header('Location: ' . URLROOT . '/index.php?url=client/tickets');
+                header('Location: ' . URLROOT . '/client/tickets');
                 return;
             }
         }

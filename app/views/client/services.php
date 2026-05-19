@@ -11,7 +11,7 @@
                 <?php if (empty($data['services'])): ?>
                     <div class="card text-center" style="padding: 40px;">
                         <p style="color: var(--text-muted); margin-bottom: 20px;">You don't have any services yet.</p>
-                        <a href="<?= URLROOT; ?>/index.php?url=client/buy" class="btn btn-primary">Browse Services</a>
+                        <a href="<?= URLROOT; ?>/client/buy" class="btn btn-primary">Browse Services</a>
                     </div>
                 <?php else: ?>
                     <div class="grid-2">
@@ -54,7 +54,7 @@
 
                                 <?php if($service->status == 'active'): ?>
                                     <div style="margin-top: auto;">
-                                        <a href="<?= URLROOT; ?>/index.php?url=client/tickets" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem;">Get Support</a>
+                                        <a href="<?= URLROOT; ?>/client/tickets" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem;">Get Support</a>
                                     </div>
                                 <?php endif; ?>
                             </div>

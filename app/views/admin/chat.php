@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('message', msg);
         formData.append('client_id', cid);
 
-        fetch('<?= URLROOT; ?>/index.php?url=chat/sendMessage', {
+        fetch('<?= URLROOT; ?>/chat/sendMessage', {
             method: 'POST',
             body: formData
         }).then(res => res.json()).then(data => {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cid = currentClientIdInput.value;
         if(cid == 0) return;
 
-        fetch('<?= URLROOT; ?>/index.php?url=chat/getMessages&client_id=' + cid)
+        fetch('<?= URLROOT; ?>/chat/getMessages&client_id=' + cid)
             .then(res => res.json())
             .then(data => {
                 if(data.error) return;

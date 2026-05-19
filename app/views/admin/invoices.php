@@ -6,10 +6,10 @@
             <div class="card" style="width: 250px; flex-shrink: 0; align-self: flex-start;">
                 <h3 style="margin-bottom: 20px;">Admin Menu</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/users" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Manage Users</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/invoices" style="display: block; padding: 10px; background: var(--accent-primary); color: white; border-radius: 4px;">Manage Invoices</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/index.php?url=admin/settings" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Site Settings</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/users" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Manage Users</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/invoices" style="display: block; padding: 10px; background: var(--accent-primary); color: white; border-radius: 4px;">Manage Invoices</a></li>
+                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/settings" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Site Settings</a></li>
                 </ul>
             </div>
 
@@ -28,7 +28,7 @@
 
                 <div id="newInvoiceForm" class="card" style="display: none; margin-bottom: 30px; border: 1px solid var(--accent-primary);">
                     <h3 style="margin-bottom: 15px;">Create Custom Invoice</h3>
-                    <form action="<?= URLROOT; ?>/index.php?url=admin/createInvoice" method="post">
+                    <form action="<?= URLROOT; ?>/admin/createInvoice" method="post">
                         <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
 
                         <div class="form-group">
@@ -85,11 +85,11 @@
                                     <td style="padding: 12px;">
                                         <?php if($inv->status == 'pending_verification'): ?>
                                             <div style="display: flex; gap: 5px;">
-                                                <form action="<?= URLROOT; ?>/index.php?url=admin/verifyPayment/<?= $inv->id; ?>/approve" method="post" onsubmit="return confirm('Approve this payment?');">
+                                                <form action="<?= URLROOT; ?>/admin/verifyPayment/<?= $inv->id; ?>/approve" method="post" onsubmit="return confirm('Approve this payment?');">
                                                     <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
                                                     <button type="submit" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem; color: #10b981; border-color: #10b981;">Approve</button>
                                                 </form>
-                                                <form action="<?= URLROOT; ?>/index.php?url=admin/verifyPayment/<?= $inv->id; ?>/reject" method="post" onsubmit="return confirm('Reject this payment?');">
+                                                <form action="<?= URLROOT; ?>/admin/verifyPayment/<?= $inv->id; ?>/reject" method="post" onsubmit="return confirm('Reject this payment?');">
                                                     <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
                                                     <button type="submit" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem; color: #ef4444; border-color: #ef4444;">Reject</button>
                                                 </form>

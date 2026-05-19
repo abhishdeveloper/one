@@ -9,7 +9,7 @@ class Admin extends Controller {
 
         // Ensure user is logged in and is an admin
         if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-            header('Location: ' . URLROOT . '/index.php?url=auth/login');
+            header('Location: ' . URLROOT . '/auth/login');
             return;
         }
 
@@ -102,7 +102,7 @@ class Admin extends Controller {
             }
 
             $_SESSION['flash_message'] = 'Settings updated successfully';
-            header('Location: ' . URLROOT . '/index.php?url=admin/settings');
+            header('Location: ' . URLROOT . '/admin/settings');
             return;
         }
 
@@ -122,7 +122,7 @@ class Admin extends Controller {
             // Prevent self-deletion
             if ($id == $_SESSION['user_id']) {
                 $_SESSION['flash_message'] = 'You cannot delete yourself.';
-                header('Location: ' . URLROOT . '/index.php?url=admin/users');
+                header('Location: ' . URLROOT . '/admin/users');
                 return;
             }
 
@@ -133,9 +133,9 @@ class Admin extends Controller {
             } else {
                 $_SESSION['flash_message'] = 'Something went wrong';
             }
-            header('Location: ' . URLROOT . '/index.php?url=admin/users');
+            header('Location: ' . URLROOT . '/admin/users');
         } else {
-            header('Location: ' . URLROOT . '/index.php?url=admin/users');
+            header('Location: ' . URLROOT . '/admin/users');
         }
     }
 
@@ -173,7 +173,7 @@ class Admin extends Controller {
 
             if ($this->db->execute()) {
                 $_SESSION['flash_message'] = 'Service added successfully.';
-                header('Location: ' . URLROOT . '/index.php?url=admin/services');
+                header('Location: ' . URLROOT . '/admin/services');
                 return;
             }
         }
@@ -207,7 +207,7 @@ class Admin extends Controller {
 
             if ($this->db->execute()) {
                 $_SESSION['flash_message'] = 'Service updated successfully.';
-                header('Location: ' . URLROOT . '/index.php?url=admin/services');
+                header('Location: ' . URLROOT . '/admin/services');
                 return;
             }
         }
@@ -234,7 +234,7 @@ class Admin extends Controller {
                 $_SESSION['flash_message'] = 'Service deleted successfully';
             }
         }
-        header('Location: ' . URLROOT . '/index.php?url=admin/services');
+        header('Location: ' . URLROOT . '/admin/services');
         return;
     }
 
@@ -278,7 +278,7 @@ class Admin extends Controller {
                 }
             }
         }
-        header('Location: ' . URLROOT . '/index.php?url=admin/invoices');
+        header('Location: ' . URLROOT . '/admin/invoices');
         return;
     }
 
@@ -311,7 +311,7 @@ class Admin extends Controller {
                 $_SESSION['flash_message'] = 'Payment rejected. Invoice returned to unpaid status.';
             }
         }
-        header('Location: ' . URLROOT . '/index.php?url=admin/invoices');
+        header('Location: ' . URLROOT . '/admin/invoices');
         return;
     }
 }

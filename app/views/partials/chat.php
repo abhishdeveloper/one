@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData();
         formData.append('message', msg);
 
-        fetch('<?= URLROOT; ?>/index.php?url=chat/sendMessage', {
+        fetch('<?= URLROOT; ?>/chat/sendMessage', {
             method: 'POST',
             body: formData
         }).then(res => res.json()).then(data => {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function fetchMessages() {
-        fetch('<?= URLROOT; ?>/index.php?url=chat/getMessages')
+        fetch('<?= URLROOT; ?>/chat/getMessages')
             .then(res => res.json())
             .then(data => {
                 if(data.error) return;
