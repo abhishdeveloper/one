@@ -41,7 +41,7 @@
 
                         <div class="form-group">
                             <label>Authorized Redirect URI (Read-only)</label>
-                            <input type="text" class="form-control" value="<?= htmlspecialchars($data['settings']['google_redirect_uri'] ?? ''); ?>" disabled style="opacity: 0.7; background-color: var(--secondary-color);">
+                            <input type="text" class="form-control" value="<?= htmlspecialchars(URLROOT . '/auth/googleCallback'); ?>" disabled style="opacity: 0.7; background-color: var(--secondary-color);">
                             <small style="color: var(--text-muted); display: block; margin-top: 5px;">Copy and paste this into your Google Cloud Console authorized redirect URIs.</small>
                         </div>
                     </div>

@@ -148,9 +148,9 @@ class Auth extends Controller {
     public function google() {
         $settings = $this->contentModel->getSettings();
         $clientId = $settings['google_client_id'] ?? '';
-        $redirectUri = $settings['google_redirect_uri'] ?? '';
+        $redirectUri = URLROOT . '/auth/googleCallback';
 
-        if (empty($clientId) || empty($redirectUri)) {
+        if (empty($clientId)) {
             die('Google OAuth is not configured properly in the admin settings.');
         }
 
@@ -176,7 +176,7 @@ class Auth extends Controller {
         $settings = $this->contentModel->getSettings();
         $clientId = $settings['google_client_id'] ?? '';
         $clientSecret = $settings['google_client_secret'] ?? '';
-        $redirectUri = $settings['google_redirect_uri'] ?? '';
+        $redirectUri = URLROOT . '/auth/googleCallback';
 
         $tokenUrl = 'https://oauth2.googleapis.com/token';
         $postData = [
