@@ -168,6 +168,12 @@ class Auth extends Controller {
     }
 
     public function googleCallback() {
+        if (isset($_GET['error'])) {
+            $_SESSION['flash_message'] = 'Google Login was cancelled or failed: ' . htmlspecialchars($_GET['error']);
+            header('Location: ' . URLROOT . '/auth/login');
+            return;
+        }
+
         if (!isset($_GET['code'])) {
             header('Location: ' . URLROOT . '/auth/login');
             return;
@@ -192,14 +198,32 @@ class Auth extends Controller {
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Ensure SSL verification is secure but doesn't fail on valid live hosts
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
         $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            $_SESSION['flash_message'] = 'cURL Error during token exchange: ' . curl_error($ch);
+            curl_close($ch);
+            header('Location: ' . URLROOT . '/auth/login');
+            return;
+        }
         curl_close($ch);
 
         $tokenData = json_decode($response, true);
 
         if (isset($tokenData['error'])) {
-            die('Error fetching token: ' . $tokenData['error_description']);
+            $errorMsg = isset($tokenData['error_description']) ? $tokenData['error_description'] : $tokenData['error'];
+            $_SESSION['flash_message'] = 'Google Token Error: ' . htmlspecialchars($errorMsg);
+            header('Location: ' . URLROOT . '/auth/login');
+            return;
+        }
+
+        if (!isset($tokenData['access_token'])) {
+            $_SESSION['flash_message'] = 'Invalid response from Google (no access token).';
+            header('Location: ' . URLROOT . '/auth/login');
+            return;
         }
 
         $accessToken = $tokenData['access_token'];
@@ -209,18 +233,28 @@ class Auth extends Controller {
         curl_setopt($ch, CURLOPT_URL, $userInfoUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken]);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
         $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            $_SESSION['flash_message'] = 'cURL Error during profile fetch: ' . curl_error($ch);
+            curl_close($ch);
+            header('Location: ' . URLROOT . '/auth/login');
+            return;
+        }
         curl_close($ch);
 
         $googleUser = json_decode($response, true);
 
         if (!isset($googleUser['email'])) {
-            die('Error fetching user info from Google');
+            $_SESSION['flash_message'] = 'Could not retrieve email from Google Account.';
+            header('Location: ' . URLROOT . '/auth/login');
+            return;
         }
 
         $userData = [
-            'name' => $googleUser['name'],
+            'name' => $googleUser['name'] ?? 'Google User',
             'email' => $googleUser['email'],
             'google_id' => $googleUser['id'],
             'avatar' => $googleUser['picture'] ?? null
@@ -231,7 +265,9 @@ class Auth extends Controller {
         if ($user) {
             $this->createUserSession($user);
         } else {
-            die('Something went wrong during Google Auth');
+            $_SESSION['flash_message'] = 'Failed to map Google Account to a local user record.';
+            header('Location: ' . URLROOT . '/auth/login');
+            return;
         }
     }
 
