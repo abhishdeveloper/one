@@ -14,7 +14,7 @@ class Security {
                 'domain' => '', // Set to your domain in production
                 'secure' => isset($_SERVER['HTTPS']), // True if HTTPS
                 'httponly' => true,
-                'samesite' => 'Strict'
+                'samesite' => 'Lax'
             ]);
             session_start();
 

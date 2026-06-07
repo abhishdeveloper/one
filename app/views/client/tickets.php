@@ -67,7 +67,7 @@
                                 <?php foreach($data['tickets'] as $ticket): ?>
                                     <tr style="border-bottom: 1px solid var(--border-color);">
                                         <td style="padding: 12px;">#<?= $ticket->id; ?></td>
-                                        <td style="padding: 12px; font-weight: 500;"><?= htmlspecialchars($ticket->subject); ?></td>
+                                        <td style="padding: 12px; font-weight: 500;"><a href="<?= URLROOT; ?>/client/viewTicket/<?= $ticket->id; ?>" style="color: inherit; text-decoration: none;"><?= htmlspecialchars($ticket->subject); ?></a></td>
                                         <td style="padding: 12px;">
                                             <?php
                                                 $color = '#3b82f6'; // open/in_progress

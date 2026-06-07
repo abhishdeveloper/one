@@ -15,7 +15,7 @@ class Auth extends Controller {
                 die('CSRF token validation failed');
             }
 
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
 
             $data = [
                 'name' => trim($_POST['name']),
@@ -66,7 +66,7 @@ class Auth extends Controller {
 
                     $_SESSION['flash_message'] = 'Registration successful! You can now log in.';
                     header('Location: ' . URLROOT . '/auth/login');
-                    return;
+                    exit;
                 } else {
                     die('Something went wrong');
                 }
@@ -96,7 +96,7 @@ class Auth extends Controller {
                 die('CSRF token validation failed');
             }
 
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
 
             $data = [
                 'email' => trim($_POST['email']),
@@ -164,19 +164,19 @@ class Auth extends Controller {
         ]);
 
         header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
-        return;
+        exit;
     }
 
     public function googleCallback() {
         if (isset($_GET['error'])) {
             $_SESSION['flash_message'] = 'Google Login was cancelled or failed: ' . htmlspecialchars($_GET['error']);
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
 
         if (!isset($_GET['code'])) {
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
 
         $settings = $this->contentModel->getSettings();
@@ -207,7 +207,7 @@ class Auth extends Controller {
             $_SESSION['flash_message'] = 'cURL Error during token exchange: ' . curl_error($ch);
             curl_close($ch);
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
         curl_close($ch);
 
@@ -217,13 +217,13 @@ class Auth extends Controller {
             $errorMsg = isset($tokenData['error_description']) ? $tokenData['error_description'] : $tokenData['error'];
             $_SESSION['flash_message'] = 'Google Token Error: ' . htmlspecialchars($errorMsg);
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
 
         if (!isset($tokenData['access_token'])) {
             $_SESSION['flash_message'] = 'Invalid response from Google (no access token).';
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
 
         $accessToken = $tokenData['access_token'];
@@ -241,7 +241,7 @@ class Auth extends Controller {
             $_SESSION['flash_message'] = 'cURL Error during profile fetch: ' . curl_error($ch);
             curl_close($ch);
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
         curl_close($ch);
 
@@ -250,7 +250,7 @@ class Auth extends Controller {
         if (!isset($googleUser['email'])) {
             $_SESSION['flash_message'] = 'Could not retrieve email from Google Account.';
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
 
         $userData = [
@@ -267,7 +267,7 @@ class Auth extends Controller {
         } else {
             $_SESSION['flash_message'] = 'Failed to map Google Account to a local user record.';
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
     }
 
@@ -283,7 +283,7 @@ class Auth extends Controller {
             $this->userModel->logAction($user->id, 'User logged in.');
             header('Location: ' . URLROOT . '/client/index');
         }
-        return;
+        exit;
     }
 
     public function logout() {
@@ -293,6 +293,6 @@ class Auth extends Controller {
         unset($_SESSION['user_role']);
         session_destroy();
         header('Location: ' . URLROOT . '/auth/login');
-        return;
+        exit;
     }
 }

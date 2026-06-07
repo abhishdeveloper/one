@@ -9,7 +9,7 @@ class Client extends Controller {
         // Ensure user is logged in
         if (!isset($_SESSION['user_id'])) {
             header('Location: ' . URLROOT . '/auth/login');
-            return;
+            exit;
         }
 
         $this->contentModel = $this->model('ContentModel');
@@ -68,7 +68,7 @@ class Client extends Controller {
 
         if (!$serviceDef) {
             header('Location: ' . URLROOT . '/client/buy');
-            return;
+            exit;
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -76,7 +76,7 @@ class Client extends Controller {
                 die('CSRF validation failed');
             }
 
-            $domain = filter_input(INPUT_POST, 'domain_name', FILTER_SANITIZE_STRING);
+            $domain = filter_input(INPUT_POST, 'domain_name', FILTER_UNSAFE_RAW);
             $price = $serviceDef->price; // Use DB dynamic price
 
             $this->db->query("INSERT INTO client_services (user_id, service_id, domain_name, price, billing_cycle) VALUES (:user_id, :service_id, :domain, :price, :billing_cycle)");
@@ -112,7 +112,7 @@ class Client extends Controller {
 
             $_SESSION['flash_message'] = 'Service requested and invoice generated successfully.';
             header('Location: ' . URLROOT . '/client/invoices');
-            return;
+            exit;
         }
 
         $data = [
@@ -145,7 +145,7 @@ class Client extends Controller {
 
         if (!$invoice) {
             header('Location: ' . URLROOT . '/client/invoices');
-            return;
+            exit;
         }
 
         $data = [
@@ -162,12 +162,12 @@ class Client extends Controller {
                 die('CSRF validation failed');
             }
 
-            $utrNumber = filter_input(INPUT_POST, 'utr_number', FILTER_SANITIZE_STRING);
+            $utrNumber = filter_input(INPUT_POST, 'utr_number', FILTER_UNSAFE_RAW);
 
             if (empty($utrNumber)) {
                 $_SESSION['flash_message'] = 'Please enter your Transaction / UTR Number.';
                 header('Location: ' . URLROOT . '/client/pay/' . $id);
-                return;
+                exit;
             }
 
             $this->db->query("UPDATE invoices SET status = 'pending_verification', utr_number = :utr WHERE id = :id AND user_id = :user_id");
@@ -183,7 +183,7 @@ class Client extends Controller {
             }
 
             header('Location: ' . URLROOT . '/client/invoices');
-            return;
+            exit;
         }
     }
 
@@ -193,8 +193,8 @@ class Client extends Controller {
                 die('CSRF validation failed');
             }
 
-            $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
-            $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+            $subject = filter_input(INPUT_POST, 'subject', FILTER_UNSAFE_RAW);
+            $message = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
             $service_id = !empty($_POST['client_service_id']) ? $_POST['client_service_id'] : null;
 
             $this->db->query("INSERT INTO tickets (user_id, client_service_id, subject, message) VALUES (:user_id, :service_id, :subject, :message)");
@@ -222,7 +222,7 @@ class Client extends Controller {
 
                 $_SESSION['flash_message'] = 'Ticket generated successfully.';
                 header('Location: ' . URLROOT . '/client/tickets');
-                return;
+                exit;
             }
         }
 
@@ -241,5 +241,75 @@ class Client extends Controller {
         ];
 
         $this->view('client/tickets', $data);
+    }
+
+    public function viewTicket($id) {
+        $this->db->query("SELECT * FROM tickets WHERE id = :id AND user_id = :user_id");
+        $this->db->bind(':id', $id);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        $ticket = $this->db->single();
+
+        if (!$ticket) {
+            header('Location: ' . URLROOT . '/client/tickets');
+            exit;
+        }
+
+        $this->db->query("
+            SELECT tr.*, u.name as user_name, u.role
+            FROM ticket_replies tr
+            JOIN users u ON tr.user_id = u.id
+            WHERE tr.ticket_id = :ticket_id
+            ORDER BY tr.created_at ASC
+        ");
+        $this->db->bind(':ticket_id', $id);
+        $replies = $this->db->resultSet();
+
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'ticket' => $ticket,
+            'replies' => $replies
+        ];
+
+        $this->view('client/ticket_view', $data);
+    }
+
+    public function replyTicket($id) {
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            header('Location: ' . URLROOT . '/client/tickets');
+            exit;
+        }
+
+        if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
+            die('CSRF validation failed');
+        }
+
+        // Verify ticket belongs to user
+        $this->db->query("SELECT id FROM tickets WHERE id = :id AND user_id = :user_id");
+        $this->db->bind(':id', $id);
+        $this->db->bind(':user_id', $_SESSION['user_id']);
+        if (!$this->db->single()) {
+            header('Location: ' . URLROOT . '/client/tickets');
+            exit;
+        }
+
+        $message = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
+
+        if (!empty($message)) {
+            $this->db->query("INSERT INTO ticket_replies (ticket_id, user_id, message) VALUES (:ticket_id, :user_id, :message)");
+            $this->db->bind(':ticket_id', $id);
+            $this->db->bind(':user_id', $_SESSION['user_id']);
+            $this->db->bind(':message', $message);
+            $this->db->execute();
+
+            // Bubble ticket to top and mark open if it was resolved
+            $this->db->query("UPDATE tickets SET updated_at = CURRENT_TIMESTAMP, status = 'open' WHERE id = :id AND status != 'closed'");
+            $this->db->bind(':id', $id);
+            $this->db->execute();
+
+            $_SESSION['flash_message'] = 'Reply sent successfully.';
+        }
+
+        header('Location: ' . URLROOT . '/client/viewTicket/' . $id);
+        exit;
     }
 }

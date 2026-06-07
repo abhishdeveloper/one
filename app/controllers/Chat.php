@@ -39,7 +39,7 @@ class Chat extends Controller {
 
     public function sendMessage() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+            $message = filter_input(INPUT_POST, 'message', FILTER_UNSAFE_RAW);
             $userId = $_SESSION['user_id'];
             $adminId = 1;
 
