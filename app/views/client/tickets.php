@@ -2,10 +2,10 @@
 
 <section class="section bg-light" style="min-height: 80vh;">
     <div class="container">
-        <div style="display: flex; gap: 30px;">
+        <div class="dashboard-layout">
             <?php $current = 'tickets'; include 'sidebar.php'; ?>
 
-            <div style="flex-grow: 1;">
+            <div class="dashboard-content">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h2>Support Tickets</h2>
                     <button onclick="document.getElementById('newTicketForm').style.display='block'" class="btn btn-primary">Open New Ticket</button>

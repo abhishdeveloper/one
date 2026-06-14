@@ -2,17 +2,10 @@
 
 <section class="section bg-light" style="min-height: 80vh;">
     <div class="container">
-        <div style="display: flex; gap: 30px;">
-            <div class="card" style="width: 250px; flex-shrink: 0; align-self: flex-start;">
-                <h3 style="margin-bottom: 20px;">Admin Menu</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/users" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Manage Users</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/settings" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Site Settings</a></li>
-                </ul>
-            </div>
+        <div class="dashboard-layout">
+            <?php $current = 'index'; require APPROOT . '/app/views/admin/sidebar.php'; ?>
 
-            <div style="flex-grow: 1;">
+            <div class="dashboard-content">
                 <h2 style="margin-bottom: 20px;">Admin Dashboard</h2>
                 <div class="grid-3">
                     <div class="card text-center">

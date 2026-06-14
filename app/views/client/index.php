@@ -2,10 +2,10 @@
 
 <section class="section bg-light" style="min-height: 80vh;">
     <div class="container">
-        <div style="display: flex; gap: 30px;">
+        <div class="dashboard-layout">
             <?php $current = 'index'; include 'sidebar.php'; ?>
 
-            <div style="flex-grow: 1;">
+            <div class="dashboard-content">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h2>Welcome, <?= htmlspecialchars($_SESSION['user_name']); ?></h2>
                     <a href="<?= URLROOT; ?>/client/buy" class="btn btn-primary">+ New Service</a>

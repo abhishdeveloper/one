@@ -2,10 +2,10 @@
 
 <section class="section bg-light" style="min-height: 80vh;">
     <div class="container">
-        <div style="display: flex; gap: 30px;">
+        <div class="dashboard-layout">
             <?php $current = 'chat'; include 'sidebar.php'; ?>
 
-            <div style="flex-grow: 1;">
+            <div class="dashboard-content">
                 <h2 style="margin-bottom: 20px;">Client Chat Center</h2>
                 <div style="display: flex; gap: 20px; height: 500px;">
 

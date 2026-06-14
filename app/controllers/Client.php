@@ -71,6 +71,11 @@ class Client extends Controller {
             exit;
         }
 
+        $data = [
+            'settings' => $this->contentModel->getSettings(),
+            'service' => $serviceDef
+        ];
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
                 die('CSRF validation failed');

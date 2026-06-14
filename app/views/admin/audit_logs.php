@@ -2,10 +2,10 @@
 
 <section class="section bg-light" style="min-height: 80vh;">
     <div class="container">
-        <div style="display: flex; gap: 30px;">
+        <div class="dashboard-layout">
             <?php $current = 'audit_logs'; include 'sidebar.php'; ?>
 
-            <div style="flex-grow: 1;">
+            <div class="dashboard-content">
                 <h2 style="margin-bottom: 20px;">Client Logbook (Audit Logs)</h2>
                 <p style="color: var(--text-muted); margin-bottom: 20px;">A permanent record of all client activities across the platform.</p>
 

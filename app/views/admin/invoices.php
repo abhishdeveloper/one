@@ -2,18 +2,10 @@
 
 <section class="section bg-light" style="min-height: 80vh;">
     <div class="container">
-        <div style="display: flex; gap: 30px;">
-            <div class="card" style="width: 250px; flex-shrink: 0; align-self: flex-start;">
-                <h3 style="margin-bottom: 20px;">Admin Menu</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/index" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Dashboard</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/users" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Manage Users</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/invoices" style="display: block; padding: 10px; background: var(--accent-primary); color: white; border-radius: 4px;">Manage Invoices</a></li>
-                    <li style="margin-bottom: 10px;"><a href="<?= URLROOT; ?>/admin/settings" style="display: block; padding: 10px; background: var(--bg-main); border-radius: 4px;">Site Settings</a></li>
-                </ul>
-            </div>
+        <div class="dashboard-layout">
+            <?php $current = 'invoices'; require APPROOT . '/app/views/admin/sidebar.php'; ?>
 
-            <div style="flex-grow: 1;">
+            <div class="dashboard-content">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h2>Manage Invoices</h2>
                     <button onclick="document.getElementById('newInvoiceForm').style.display='block'" class="btn btn-primary">+ Create Custom Invoice</button>
