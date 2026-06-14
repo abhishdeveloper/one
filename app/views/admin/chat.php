@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cid = currentClientIdInput.value;
         if(cid == 0) return;
 
-        fetch('<?= URLROOT; ?>/chat/getMessages&client_id=' + cid)
+        fetch('<?= URLROOT; ?>/chat/getMessages?client_id=' + cid)
             .then(res => res.json())
             .then(data => {
                 if(data.error) return;

@@ -19,6 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Mobile Menu Toggle ---
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('show');
+            }
+        });
+    }
+
     function updateIcons(theme) {
         if (!iconSun || !iconMoon) return;
         if (theme === 'light') {
