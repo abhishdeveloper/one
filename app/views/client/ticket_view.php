@@ -1,13 +1,13 @@
 <?php require APPROOT . '/app/views/partials/header.php'; ?>
-<div class="dashboard-container" style="display: flex; gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto;">
+<div class="container dashboard-layout" style="padding-top: 40px; padding-bottom: 40px;">
     <?php
     $current = 'tickets';
     require APPROOT . '/app/views/client/sidebar.php';
     ?>
-    <div class="content" style="flex-grow: 1; display: flex; flex-direction: column; gap: 20px;">
+    <div class="dashboard-content" style="display: flex; flex-direction: column; gap: 20px;">
 
         <!-- Ticket Header -->
-        <div class="card" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+        <div class="card ticket-header-controls" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
             <div>
                 <a href="<?= URLROOT ?>/client/tickets" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px; display: inline-block;">&larr; Back to Tickets</a>
                 <h2 style="margin: 0; display: flex; align-items: center; gap: 10px;">
@@ -34,7 +34,7 @@
         <!-- Thread -->
         <div style="display: flex; flex-direction: column; gap: 15px;">
             <!-- Original Message -->
-            <div class="card" style="border-left: 4px solid var(--accent-secondary); margin-right: 40px;">
+            <div class="card ticket-message-card" style="border-left: 4px solid var(--accent-secondary); margin-right: 40px;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
                     <strong>You <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: normal;">(Client)</span></strong>
                     <small style="color: var(--text-muted);"><?= date('M j, Y g:i A', strtotime($data['ticket']->created_at)) ?></small>
@@ -45,7 +45,7 @@
             <!-- Replies -->
             <?php foreach($data['replies'] as $reply): ?>
                 <?php $isAdmin = $reply->role == 'admin'; ?>
-                <div class="card" style="border-left: 4px solid <?= $isAdmin ? 'var(--accent-primary)' : 'var(--accent-secondary)' ?>; margin-left: <?= $isAdmin ? '40px' : '0' ?>; margin-right: <?= $isAdmin ? '0' : '40px' ?>;">
+                <div class="card ticket-message-card" style="border-left: 4px solid <?= $isAdmin ? 'var(--accent-primary)' : 'var(--accent-secondary)' ?>; margin-left: <?= $isAdmin ? '40px' : '0' ?>; margin-right: <?= $isAdmin ? '0' : '40px' ?>;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
                         <strong><?= htmlspecialchars($reply->user_name) ?> <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: normal;">(<?= $isAdmin ? 'Admin Support' : 'You' ?>)</span></strong>
                         <small style="color: var(--text-muted);"><?= date('M j, Y g:i A', strtotime($reply->created_at)) ?></small>

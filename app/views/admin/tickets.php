@@ -1,10 +1,10 @@
 <?php require APPROOT . '/app/views/partials/header.php'; ?>
-<div class="dashboard-container" style="display: flex; gap: 20px; padding: 20px;">
+<div class="container dashboard-layout" style="padding-top: 40px; padding-bottom: 40px;">
     <?php
     $current = 'tickets';
     require APPROOT . '/app/views/admin/sidebar.php';
     ?>
-    <div class="content" style="flex-grow: 1;">
+    <div class="dashboard-content">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h2>Support Tickets</h2>
             <div style="display: flex; gap: 15px;">

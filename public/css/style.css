@@ -218,6 +218,11 @@ tr:hover td { background: var(--bg-surface-elevated); }
     .sidebar { width: 100%; position: relative; top: 0; }
     .sidebar ul { display: flex; overflow-x: auto; padding-bottom: 10px; gap: 10px; }
     .sidebar ul li { flex-shrink: 0; margin-bottom: 0 !important; }
+
+    /* Ticket specific overrides */
+    .ticket-header-controls { flex-direction: column; align-items: stretch !important; gap: 15px; }
+    .ticket-status-form { width: 100%; }
+    .ticket-message-card { margin-left: 0 !important; margin-right: 0 !important; }
 }
 
 @media (max-width: 768px) {

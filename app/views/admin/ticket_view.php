@@ -1,13 +1,13 @@
 <?php require APPROOT . '/app/views/partials/header.php'; ?>
-<div class="dashboard-container" style="display: flex; gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto;">
+<div class="container dashboard-layout" style="padding-top: 40px; padding-bottom: 40px;">
     <?php
     $current = 'tickets';
     require APPROOT . '/app/views/admin/sidebar.php';
     ?>
-    <div class="content" style="flex-grow: 1; display: flex; flex-direction: column; gap: 20px;">
+    <div class="dashboard-content" style="display: flex; flex-direction: column; gap: 20px;">
 
         <!-- Ticket Header & Controls -->
-        <div class="card" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+        <div class="card ticket-header-controls" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
             <div>
                 <a href="<?= URLROOT ?>/admin/tickets" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px; display: inline-block;">&larr; Back to Tickets</a>
                 <h2 style="margin: 0; display: flex; align-items: center; gap: 10px;">
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div style="background: var(--bg-main); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+            <div class="ticket-status-form" style="background: var(--bg-main); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
                 <form action="<?= URLROOT ?>/admin/updateTicketStatus/<?= $data['ticket']->id ?>" method="POST" style="display: flex; gap: 10px; align-items: center;">
                     <input type="hidden" name="csrf_token" value="<?= Security::generateCsrfToken(); ?>">
                     <label style="font-weight: bold; font-size: 0.9rem;">Update Status:</label>
@@ -47,7 +47,7 @@
         <!-- Thread -->
         <div style="display: flex; flex-direction: column; gap: 15px;">
             <!-- Original Message -->
-            <div class="card" style="border-left: 4px solid var(--accent-secondary);">
+            <div class="card ticket-message-card" style="border-left: 4px solid var(--accent-secondary);">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
                     <strong><?= htmlspecialchars($data['ticket']->client_name) ?> <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: normal;">(Client)</span></strong>
                     <small style="color: var(--text-muted);"><?= date('M j, Y g:i A', strtotime($data['ticket']->created_at)) ?></small>
@@ -58,7 +58,7 @@
             <!-- Replies -->
             <?php foreach($data['replies'] as $reply): ?>
                 <?php $isAdmin = $reply->role == 'admin'; ?>
-                <div class="card" style="border-left: 4px solid <?= $isAdmin ? 'var(--accent-primary)' : 'var(--accent-secondary)' ?>; margin-left: <?= $isAdmin ? '0' : '40px' ?>; margin-right: <?= $isAdmin ? '40px' : '0' ?>;">
+                <div class="card ticket-message-card" style="border-left: 4px solid <?= $isAdmin ? 'var(--accent-primary)' : 'var(--accent-secondary)' ?>; margin-left: <?= $isAdmin ? '0' : '40px' ?>; margin-right: <?= $isAdmin ? '40px' : '0' ?>;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
                         <strong><?= htmlspecialchars($reply->user_name) ?> <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: normal;">(<?= $isAdmin ? 'Admin Support' : 'Client' ?>)</span></strong>
                         <small style="color: var(--text-muted);"><?= date('M j, Y g:i A', strtotime($reply->created_at)) ?></small>
